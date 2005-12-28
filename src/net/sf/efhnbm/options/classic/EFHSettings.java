@@ -129,11 +129,16 @@ public class EFHSettings extends SystemOption{
      *
      */
     protected void firePropertyChange(String name, Object oldValue, Object newValue) {
-        firePropertiesHaveBeenChanged();
+        super.firePropertyChange(name, oldValue, newValue);
+        LaunchersFactory.getInstance().reset();
     }
     
+    /**
+     * fake propertychange to fire save
+     *
+     */
     public void firePropertiesHaveBeenChanged(){
-        LaunchersFactory.getInstance().reset();
+        firePropertyChange(PROP_OPTION, null, getOption());
     }
     
 }
