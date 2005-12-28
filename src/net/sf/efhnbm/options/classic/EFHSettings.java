@@ -33,6 +33,8 @@ import org.openide.util.HelpCtx;
  */
 public class EFHSettings extends SystemOption{
     
+    static final long serialVersionUID = 1234567890L;    
+    
     public static final String PROP_OPTION = "option";
     public static final String PROP_OPTION_BUNDLE = "bundle";
     public static final String PROP_OPTION_CLASS = "class";
@@ -64,7 +66,7 @@ public class EFHSettings extends SystemOption{
      */
     protected void initialize() {
         super.initialize();
-        
+
         putProperty(PROP_COMMAND, "rundll32 url.dll,FileProtocolHandler {0}", true);
         putProperty(PROP_LAUNCHER_CLASS, "net.sf.efhnbm.launchers.Win32Launcher", true);
         putProperty(PROP_OPTION, PROP_OPTION_BUNDLE, true);
