@@ -47,7 +47,7 @@ public class LinuxLauncher implements Launcher {
     }
     
     /**
-     * launch the windows command to explore a directory
+     * launch the linux command to explore a directory
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
