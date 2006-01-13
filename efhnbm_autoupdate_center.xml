@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE module_updates PUBLIC "-//NetBeans//DTD Autoupdate Catalog 2.3//EN" "http://www.netbeans.org/dtds/autoupdate-catalog-2_3.dtd">
+<module_updates timestamp="01/01/01/13/01/2006">
+    <module_group name="Infrastructure">
+        <module codenamebase="net.sf.efhnbm"
+            homepage="http://efhnbm.sf.net"
+            distribution="http://switch.dl.sourceforge.net/sourceforge/efhnbm/net-sf-efhnbm.0.2.2.nbm"
+            license="lic.txt"
+            downloadsize="16443"
+            needsrestart="true"
+            moduleauthor="anegrin"
+            releasedate="2006/01/13"
+            >
+            <manifest OpenIDE-Module="net.sf.efhnbm/0"
+            OpenIDE-Module-Build-Version="060113"
+            OpenIDE-Module-Display-Category="Infrastructure"
+            OpenIDE-Module-Implementation-Version="2"
+            OpenIDE-Module-Long-Description="Launch the OS file manager"
+            OpenIDE-Module-Module-Dependencies="org.jdesktop.layout/1 &gt; 1.2.1, org.netbeans.modules.options.api/0 &gt; 1.1.1, org.openide.dialogs &gt; 6.2.1, org.openide.filesystems &gt; 6.2.1, org.openide.loaders &gt; 5.2.1, org.openide.nodes &gt; 6.5.1, org.openide.options &gt; 6.3.1, org.openide.util &gt; 6.4.1"
+            OpenIDE-Module-Name="Explore from here"
+            OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1"
+            OpenIDE-Module-Short-Description="Launch the OS file manager"
+            OpenIDE-Module-Specification-Version="0.2.2"
+            />
+            <license name="lic.txt"><![CDATA[                         Sun Public License Notice
+
+The contents of this file are subject to the Sun Public License Version
+1.0 (the "License"). You may not use this file except in compliance with
+the License. A copy of the License is available at http://www.sun.com/
+
+The Original Code is the "Explore from here" NetBeans Module.
+The Initial Developer of the Original Code is alessandro negrin.
+Portions created by alessandro negrin are Copyright (C) 2005.
+All Rights Reserved.
+
+Contributor(s): alessandro negrin.]]></license>
+        </module>
+        
+    
+    </module_group>
+
+</module_updates>
+
