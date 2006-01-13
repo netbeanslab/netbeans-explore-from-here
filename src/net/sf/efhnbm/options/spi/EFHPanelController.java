@@ -15,11 +15,10 @@
  */
 package net.sf.efhnbm.options.spi;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
 import net.sf.efhnbm.options.classic.EFHSettings;
-import org.netbeans.spi.options.OptionsCategory.PanelController;
+import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.SharedClassObject;
@@ -29,7 +28,7 @@ import org.openide.util.SharedClassObject;
  * @author alessandro negrin
  * @version $Id$
  */
-public class EFHPanelController extends PanelController {
+public class EFHPanelController extends OptionsPanelController {
     
     private EFHOptionPanel panel;
     private EFHSettings settings;

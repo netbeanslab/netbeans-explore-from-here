@@ -18,6 +18,7 @@ package net.sf.efhnbm.options.spi;
 import net.sf.efhnbm.options.classic.EFHSettings;
 import org.netbeans.spi.options.AdvancedOption;
 import org.netbeans.spi.options.OptionsCategory;
+import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.SharedClassObject;
 
 /**
@@ -43,7 +44,7 @@ public class EFHOptionCategory extends AdvancedOption{
         return settings.displayName();
     }
 
-    public OptionsCategory.PanelController create() {
+    public OptionsPanelController create() {
         return new EFHPanelController();
     }
     

@@ -85,8 +85,12 @@ public class ExploreFromHere extends NodeAction {
         if (node!=null && node.length==1){
             Node currentNode=node[0];
             DataObject dataObject=(DataObject)currentNode.getCookie(DataObject.class);
-            FileObject fileObj=dataObject.getPrimaryFile();
-            return fileObj.isValid() && !fileObj.isVirtual();
+            if (dataObject!=null){
+                FileObject fileObj=dataObject.getPrimaryFile();
+                return fileObj.isValid() && !fileObj.isVirtual();
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
