@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module_updates PUBLIC "-//NetBeans//DTD Autoupdate Catalog 2.3//EN" "http://www.netbeans.org/dtds/autoupdate-catalog-2_3.dtd">
-<module_updates timestamp="01/01/01/17/01/2006">
+<module_updates timestamp="01/01/01/15/02/2006">
 <module_group name="Infrastructure">
-<module codenamebase="net.sf.efhnbm" homepage="http://efhnbm.sourceforge.net" distribution="http://osdn.dl.sourceforge.net/sourceforge/efhnbm/net-sf-efhnbm.0.3.0.nbm" license="lic.txt" downloadsize="16784" needsrestart="true" moduleauthor="alessandro negrin" releasedate="2006/01/17">
-  <manifest OpenIDE-Module="net.sf.efhnbm/0" OpenIDE-Module-Build-Version="060117" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="0" OpenIDE-Module-Long-Description="Launch the OS file manager" OpenIDE-Module-Module-Dependencies="org.jdesktop.layout/1 &gt; 1.2.1, org.netbeans.modules.options.api/0 &gt; 1.1.1, org.openide.dialogs &gt; 6.2.1, org.openide.filesystems &gt; 6.2.1, org.openide.loaders &gt; 5.2.1, org.openide.nodes &gt; 6.5.1, org.openide.options &gt; 6.3.1, org.openide.util &gt; 6.4.1" OpenIDE-Module-Name="Explore from here" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Launch the OS file manager" OpenIDE-Module-Specification-Version="0.3.0"/>
+<module codenamebase="net.sf.efhnbm" homepage="http://efhnbm.sourceforge.net" distribution="http://osdn.dl.sourceforge.net/sourceforge/efhnbm/net-sf-efhnbm.0.3.1.nbm" license="lic.txt" downloadsize="17433" needsrestart="true" moduleauthor="alessandro negrin" releasedate="2006/02/15">
+  <manifest OpenIDE-Module="net.sf.efhnbm/0" OpenIDE-Module-Build-Version="060215" OpenIDE-Module-Display-Category="Infrastructure" OpenIDE-Module-Implementation-Version="1" OpenIDE-Module-Long-Description="Launch the OS file manager" OpenIDE-Module-Module-Dependencies="org.jdesktop.layout/1 &gt; 1.2.1, org.netbeans.modules.options.api/0 &gt; 1.1.1, org.openide.dialogs &gt; 6.2.1, org.openide.filesystems &gt; 6.2.1, org.openide.loaders &gt; 5.2.1, org.openide.nodes &gt; 6.5.1, org.openide.options &gt; 6.3.1, org.openide.util &gt; 6.4.1" OpenIDE-Module-Name="Explore from here" OpenIDE-Module-Requires="org.openide.modules.ModuleFormat1" OpenIDE-Module-Short-Description="Launch the OS file manager" OpenIDE-Module-Specification-Version="0.3.1"/>
   <license name="lic.txt">                         Sun Public License Notice
 
 The contents of this file are subject to the Sun Public License Version

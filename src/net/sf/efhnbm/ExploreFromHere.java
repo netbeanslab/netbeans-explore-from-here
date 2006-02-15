@@ -15,6 +15,7 @@
  */
 package net.sf.efhnbm;
 
+import java.io.File;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import org.openide.DialogDisplayer;
@@ -107,7 +108,11 @@ public class ExploreFromHere extends NodeAction {
             Launcher launcher=getLauncher();
             if (launcher!=null){
                 dataObject.getPrimaryFile().getPath();
-                performOnPath(launcher, dataObject.getPrimaryFile().getPath());
+
+                //building a file allow to get the absolute path with the correct separator (/ or \)
+                File file=new File(dataObject.getPrimaryFile().getPath());
+                
+                performOnPath(launcher, file.getAbsolutePath());
             } else {
                 NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg")+osName, NotifyDescriptor.ERROR_MESSAGE);
                 DialogDisplayer.getDefault().notify(desc);
