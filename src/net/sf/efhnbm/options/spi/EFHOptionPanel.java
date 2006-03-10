@@ -16,6 +16,8 @@
 package net.sf.efhnbm.options.spi;
 
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import net.sf.efhnbm.Launcher;
@@ -42,11 +44,13 @@ public class EFHOptionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
         optionGroup = new javax.swing.ButtonGroup();
+        commandChooser = new javax.swing.JFileChooser();
         bundleOption = new javax.swing.JRadioButton();
         classOption = new javax.swing.JRadioButton();
         commandOption = new javax.swing.JRadioButton();
         classTextField = new javax.swing.JTextField();
         commandTextField = new javax.swing.JTextField();
+        browseCommandButton = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("option")));
         bundleOption.setBackground(null);
@@ -82,27 +86,37 @@ public class EFHOptionPanel extends javax.swing.JPanel {
             }
         });
 
+        browseCommandButton.setText(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("browse_command"));
+        browseCommandButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onBrowseForCommand(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(bundleOption)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                    .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(classOption)
                             .add(commandOption))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(classTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, commandTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(commandTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(browseCommandButton))
+                            .add(classTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(bundleOption)
                 .add(16, 16, 16)
@@ -112,34 +126,48 @@ public class EFHOptionPanel extends javax.swing.JPanel {
                 .add(16, 16, 16)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(commandOption)
+                    .add(browseCommandButton)
                     .add(commandTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onBrowseForCommand(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onBrowseForCommand
+        // TODO add your handling code here:
+        int result=commandChooser.showOpenDialog(this);
+        if (result==JFileChooser.APPROVE_OPTION){
+            commandTextField.setText(commandChooser.getSelectedFile().getAbsolutePath()+" {0}");
+        }
+    }//GEN-LAST:event_onBrowseForCommand
         
     private void onSelectCommand(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSelectCommand
         
         classTextField.setEnabled(false);
         commandTextField.setEnabled(true);
+        browseCommandButton.setEnabled(true);
     }//GEN-LAST:event_onSelectCommand
     
     private void onSelectClass(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSelectClass
         
         classTextField.setEnabled(true);
         commandTextField.setEnabled(false);
+        browseCommandButton.setEnabled(false);
     }//GEN-LAST:event_onSelectClass
     
     private void onSelectBundle(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSelectBundle
         
         classTextField.setEnabled(false);
         commandTextField.setEnabled(false);
+        browseCommandButton.setEnabled(false);
     }//GEN-LAST:event_onSelectBundle
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton browseCommandButton;
     private javax.swing.JRadioButton bundleOption;
     private javax.swing.JRadioButton classOption;
     private javax.swing.JTextField classTextField;
+    private javax.swing.JFileChooser commandChooser;
     private javax.swing.JRadioButton commandOption;
     private javax.swing.JTextField commandTextField;
     private javax.swing.ButtonGroup optionGroup;
@@ -160,6 +188,9 @@ public class EFHOptionPanel extends javax.swing.JPanel {
     }
     JTextField getCommandTextField(){
         return commandTextField;
+    }
+    JButton getBrowseCommandButton(){
+        return browseCommandButton;
     }
     
 }

@@ -50,14 +50,17 @@ public class EFHPanelController extends OptionsPanelController {
             panel.getBundleOption().setSelected(true);
             panel.getClassTextField().setEnabled(false);
             panel.getCommandTextField().setEnabled(false);
+            panel.getBrowseCommandButton().setEnabled(false);
         } else if (EFHSettings.PROP_OPTION_CLASS.equals(settings.getOption())){
             panel.getClassOption().setSelected(true);
             panel.getClassTextField().setEnabled(true);
             panel.getCommandTextField().setEnabled(false);
+            panel.getBrowseCommandButton().setEnabled(false);
         } else if (EFHSettings.PROP_OPTION_COMMAND.equals(settings.getOption())){
             panel.getCommandOption().setSelected(true);
             panel.getClassTextField().setEnabled(false);
             panel.getCommandTextField().setEnabled(true);
+            panel.getBrowseCommandButton().setEnabled(true);
         }
         
         panel.getClassTextField().setText(settings.getLauncherClass());

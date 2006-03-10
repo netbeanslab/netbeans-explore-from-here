@@ -4,6 +4,8 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="optionGroup">
     </Component>
+    <Component class="javax.swing.JFileChooser" name="commandChooser">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -34,9 +36,13 @@
                           <Component id="commandOption" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="classTextField" pref="297" max="32767" attributes="1"/>
-                          <Component id="commandTextField" alignment="0" pref="297" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="commandTextField" pref="210" max="32767" attributes="1"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="browseCommandButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="classTextField" alignment="0" pref="297" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -57,6 +63,7 @@
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="commandOption" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="browseCommandButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="commandTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -140,6 +147,16 @@
     <Component class="javax.swing.JTextField" name="classTextField">
     </Component>
     <Component class="javax.swing.JTextField" name="commandTextField">
+    </Component>
+    <Component class="javax.swing.JButton" name="browseCommandButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="net/sf/efhnbm/resources/i18n.properties" key="browse_command" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onBrowseForCommand"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
