@@ -79,7 +79,7 @@ public class LaunchersFactory {
                     String className=settings.getLauncherClass();
                     launcher=(Launcher)Class.forName(className).newInstance();
                 } else if (EFHSettings.PROP_OPTION_COMMAND.equals(todo)) {
-                    launcher=new CommandLauncher(settings.getCommand());
+                    launcher=new CommandLauncher(settings.getCommandExplore(), settings.getCommandSelect());
                 }
             } catch (Exception e) {
                 //don't care

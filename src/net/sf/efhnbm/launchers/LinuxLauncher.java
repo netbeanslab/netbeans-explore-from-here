@@ -17,6 +17,8 @@ package net.sf.efhnbm.launchers;
 
 import java.io.File;
 import net.sf.efhnbm.Launcher;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 
 /**
  * a generic linux launcher. nautilus or konqueror required
@@ -39,7 +41,7 @@ public class LinuxLauncher implements Launcher {
         File konqueror=new File(konquerorPath);
         
         if (nautilus.exists()){
-            commandPrefix=nautilusPath+' ';
+            commandPrefix=nautilusPath+" --no-desktop ";
         } else if (konqueror.exists()){
             commandPrefix=konquerorPath+' ';
         }
@@ -62,5 +64,15 @@ public class LinuxLauncher implements Launcher {
 
         p=r.exec(commandPrefix+path);
         p.waitFor();
+    }
+
+    /**
+     * launch the linux command to select a file
+     * @param path the path to explore
+     * @throws Exception if something goes wrong in the runtime
+     */
+    public void select(String path) throws Exception {
+        NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("do_not_know"), NotifyDescriptor.INFORMATION_MESSAGE);
+        DialogDisplayer.getDefault().notify(desc);
     }
 }

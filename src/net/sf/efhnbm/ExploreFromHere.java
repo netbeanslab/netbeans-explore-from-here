@@ -10,7 +10,7 @@
  * Portions created by alessandro negrin are Copyright (C) 2005.
  * All Rights Reserved.
  *
- * Contributor(s): alessandro negrin.
+ * Contributor(s): alessandro negrin, Yong Wind Li
  *
  */
 package net.sf.efhnbm;
@@ -18,13 +18,18 @@ package net.sf.efhnbm;
 import java.io.File;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import org.netbeans.api.project.Project;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
+import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
+import org.openide.nodes.Node.PropertySet;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.NodeAction;
+import org.openide.util.Lookup.Template;
 
 
 /**
@@ -34,31 +39,17 @@ import org.openide.util.actions.NodeAction;
  */
 public class ExploreFromHere extends NodeAction {
     
-    String osName=System.getProperty("os.name");
-    String name=null;
+    EFHHelper helper;
+    String name;
     
     /**
      * Creates a new instance of ExploreFromHere
      */
     public ExploreFromHere() {
+        helper=new EFHHelper();
         setName();
-        
     }
 
-    private Launcher getLauncher() {
-        return LaunchersFactory.getInstance().getLauncher();
-    }
-    
-    /**
-     * set the name of the action
-     */
-    protected void setName(){
-        try{
-            name=ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here")+osName;
-        } catch (MissingResourceException mre){
-            name="&Explore with OS";
-        }
-    }
     
     /**
      * get help context for action
@@ -77,24 +68,41 @@ public class ExploreFromHere extends NodeAction {
     }
     
     /**
+     * set the name of the action
+     */
+    protected void setName(){
+        try{
+            name=ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here")+helper.getOsName();
+        } catch (MissingResourceException mre){
+            name="&Explore with OS";
+        }
+    }
+    
+    /**
      * should enable this action?
      * @param node the current node
      * @return if action is enabled
      */
     protected boolean enable(org.openide.nodes.Node[] node) {
-        
+
         if (node!=null && node.length==1){
             Node currentNode=node[0];
+            
+            Project projects[] = (Project[])currentNode.getLookup().lookup(new Template(Project.class)).allInstances().toArray(new Project[0]);
+            
+            if (projects !=null && projects.length ==1 && projects[0] != null){
+                return true;
+            }
+            
             DataObject dataObject=(DataObject)currentNode.getCookie(DataObject.class);
             if (dataObject!=null){
                 FileObject fileObj=dataObject.getPrimaryFile();
                 return fileObj.isValid() && !fileObj.isVirtual();
-            } else {
-                return false;
             }
-        } else {
-            return false;
-        }
+            
+        } 
+        return false;
+        
     }
     
     /**
@@ -102,35 +110,6 @@ public class ExploreFromHere extends NodeAction {
      * @param node the current node
      */
     protected void performAction(org.openide.nodes.Node[] node) {
-        Node currentNode=node[0];
-        DataObject dataObject=(DataObject)currentNode.getCookie(DataObject.class);
-        try{
-            Launcher launcher=getLauncher();
-            if (launcher!=null){
-                dataObject.getPrimaryFile().getPath();
-
-                //building a file allow to get the absolute path with the correct separator (/ or \)
-                File file=new File(dataObject.getPrimaryFile().getPath());
-                
-                performOnPath(launcher, file.getAbsolutePath());
-            } else {
-                NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg")+osName, NotifyDescriptor.ERROR_MESSAGE);
-                DialogDisplayer.getDefault().notify(desc);
-            }
-        } catch (Exception e){
-                NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg")+osName, NotifyDescriptor.ERROR_MESSAGE);
-                DialogDisplayer.getDefault().notify(desc);
-        }
-    }
-    
-    /**
-     * use the right launcher to explore the path
-     * @param launcher the launcher to use
-     * @param path the path to explore
-     * @throws java.lang.Exception if something goes wrong in the runtime
-     */
-    protected void performOnPath(Launcher launcher, String path) throws Exception{
-        launcher.explore(path);
-    }
-    
+        helper.performAction(node, EFHHelper.EXPLORE);
+    }    
 }

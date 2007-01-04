@@ -49,22 +49,35 @@ public class EFHPanelController extends OptionsPanelController {
         if (EFHSettings.PROP_OPTION_BUNDLE.equals(settings.getOption())){
             panel.getBundleOption().setSelected(true);
             panel.getClassTextField().setEnabled(false);
-            panel.getCommandTextField().setEnabled(false);
-            panel.getBrowseCommandButton().setEnabled(false);
+            
+            panel.getCommandTextFieldExplore().setEnabled(false);
+            panel.getBrowseCommandButtonExplore().setEnabled(false);
+            panel.getCommandTextFieldSelect().setEnabled(false);
+            panel.getBrowseCommandButtonSelect().setEnabled(false);
+            
         } else if (EFHSettings.PROP_OPTION_CLASS.equals(settings.getOption())){
             panel.getClassOption().setSelected(true);
             panel.getClassTextField().setEnabled(true);
-            panel.getCommandTextField().setEnabled(false);
-            panel.getBrowseCommandButton().setEnabled(false);
+            
+            panel.getCommandTextFieldExplore().setEnabled(false);
+            panel.getBrowseCommandButtonExplore().setEnabled(false);
+            panel.getCommandTextFieldSelect().setEnabled(false);
+            panel.getBrowseCommandButtonSelect().setEnabled(false);
+            
         } else if (EFHSettings.PROP_OPTION_COMMAND.equals(settings.getOption())){
             panel.getCommandOption().setSelected(true);
             panel.getClassTextField().setEnabled(false);
-            panel.getCommandTextField().setEnabled(true);
-            panel.getBrowseCommandButton().setEnabled(true);
+            
+            panel.getCommandTextFieldExplore().setEnabled(true);
+            panel.getBrowseCommandButtonExplore().setEnabled(true);
+            panel.getCommandTextFieldSelect().setEnabled(true);
+            panel.getBrowseCommandButtonSelect().setEnabled(true);
+            
         }
         
         panel.getClassTextField().setText(settings.getLauncherClass());
-        panel.getCommandTextField().setText(settings.getCommand());
+        panel.getCommandTextFieldExplore().setText(settings.getCommandExplore());
+        panel.getCommandTextFieldSelect().setText(settings.getCommandSelect());
         
         changed=false;
     }
@@ -83,7 +96,8 @@ public class EFHPanelController extends OptionsPanelController {
         }
         
         settings.setLauncherClass(panel.getClassTextField().getText());
-        settings.setCommand(panel.getCommandTextField().getText());
+        settings.setCommandExplore(panel.getCommandTextFieldExplore().getText());
+        settings.setCommandSelect(panel.getCommandTextFieldSelect().getText());
         
         settings.firePropertiesHaveBeenChanged();
         

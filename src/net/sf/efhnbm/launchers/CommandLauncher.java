@@ -25,14 +25,16 @@ import net.sf.efhnbm.Launcher;
  */
 public class CommandLauncher implements Launcher {
 
-    private String command;
+    private String commandExplore;
+    private String commandSelect;
     
     
     /**
      * default constructor
      */
-    public CommandLauncher(String command) {
-        this.command=command;
+    public CommandLauncher(String commandExplore, java.lang.String commandSelect) {
+        this.commandExplore=commandExplore;
+        this.commandSelect=commandSelect;
     }
     
     /**
@@ -45,7 +47,23 @@ public class CommandLauncher implements Launcher {
         Runtime r= Runtime.getRuntime();
         Process p=null;
 
-        String realCommand=MessageFormat.format(command, new String[]{path});
+        String realCommand=MessageFormat.format(commandExplore, new String[]{path});
+        
+        p=r.exec(realCommand);
+        p.waitFor();
+    }
+
+    /**
+     * launch the command to select a file
+     * @param path the path to explore
+     * @throws Exception if something goes wrong in the runtime
+     */
+    public void select(String path) throws Exception {
+        
+        Runtime r= Runtime.getRuntime();
+        Process p=null;
+
+        String realCommand=MessageFormat.format(commandSelect, new String[]{path});
         
         p=r.exec(realCommand);
         p.waitFor();

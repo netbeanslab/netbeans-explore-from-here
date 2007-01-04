@@ -19,6 +19,11 @@
 -->
 <filesystem>
 
+    <folder name="Projects">
+        <folder name="Actions">
+            <file name="net.sf.efhnbm.ExploreFromHere.instance"/>
+        </folder>
+    </folder>
     <folder name="Loaders">
         <folder name="folder">
             <folder name="any">
@@ -30,7 +35,7 @@
     </folder>
  
     <folder name="Services">
-        <file name="net-sf-efhnbm-options-classic-EFHSettings.settings" url="EFHSettings.xml" />
+        <file name="net-sf-efhnbm-options-classic-EFHSettings.settings" url="EFHSettings.xml"/>
         <folder name="AutoupdateType">
          <file name="efhnbm_autoupdate_center.settings" url="EFHAutoUpdate.xml">
             <attr name="SystemFileSystem.localizingBundle" stringvalue="net.sf.efhnbm.Bundle"/>

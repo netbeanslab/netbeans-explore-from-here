@@ -40,7 +40,8 @@ public class EFHSettings extends SystemOption{
     public static final String PROP_OPTION_CLASS = "class";
     public static final String PROP_OPTION_COMMAND = "command";
     public static final String PROP_LAUNCHER_CLASS = "launcher_class";
-    public static final String PROP_COMMAND = "command";
+    public static final String PROP_COMMAND_EXPLORE = "command";//keeping "command" for backward comp.
+    public static final String PROP_COMMAND_SELECT = "command_select";
     
     /** Creates a new instance of EFHSettings */
     public EFHSettings() {
@@ -67,9 +68,11 @@ public class EFHSettings extends SystemOption{
     protected void initialize() {
         super.initialize();
 
-        putProperty(PROP_COMMAND, "rundll32 url.dll,FileProtocolHandler {0}", true);
+        putProperty(PROP_COMMAND_EXPLORE, "rundll32 url.dll,FileProtocolHandler {0}", true);
         putProperty(PROP_LAUNCHER_CLASS, "net.sf.efhnbm.launchers.Win32Launcher", true);
         putProperty(PROP_OPTION, PROP_OPTION_BUNDLE, true);
+
+        putProperty(PROP_COMMAND_SELECT, "explorer /e,/select,{0}", true);
     }
     
     /**
@@ -77,9 +80,11 @@ public class EFHSettings extends SystemOption{
      *
      */
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(getProperty(PROP_COMMAND));
+        out.writeObject(getProperty(PROP_COMMAND_EXPLORE));
         out.writeObject(getProperty(PROP_LAUNCHER_CLASS));
         out.writeObject(getProperty(PROP_OPTION));
+
+        out.writeObject(getProperty(PROP_COMMAND_SELECT));//at the end for backward comp.
     }
     
     /**
@@ -87,9 +92,13 @@ public class EFHSettings extends SystemOption{
      *
      */
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        putProperty(PROP_COMMAND, in.readObject(), true);
+        putProperty(PROP_COMMAND_EXPLORE, in.readObject(), true);
         putProperty(PROP_LAUNCHER_CLASS, in.readObject(), true);
         putProperty(PROP_OPTION, in.readObject(), true);
+        
+        if (in.available()>0){//backward comp. - command for select could not be present
+            putProperty(PROP_COMMAND_SELECT, in.readObject(), true);
+        }
     }
     
     /**
@@ -116,12 +125,20 @@ public class EFHSettings extends SystemOption{
         putProperty(PROP_LAUNCHER_CLASS, launcherClass, true);
     }
 
-    public String getCommand() {
-        return (String) getProperty(PROP_COMMAND);
+    public String getCommandExplore() {
+        return (String) getProperty(PROP_COMMAND_EXPLORE);
     }
 
-    public void setCommand(String command) {
-        putProperty(PROP_COMMAND, command, true);
+    public void setCommandExplore(String command) {
+        putProperty(PROP_COMMAND_EXPLORE, command, true);
+    }
+
+    public String getCommandSelect() {
+        return (String) getProperty(PROP_COMMAND_SELECT);
+    }
+
+    public void setCommandSelect(String command) {
+        putProperty(PROP_COMMAND_SELECT, command, true);
     }
 
     /**

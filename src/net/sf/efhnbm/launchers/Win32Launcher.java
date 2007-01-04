@@ -44,4 +44,18 @@ public class Win32Launcher implements Launcher {
         p=r.exec("rundll32 url.dll,FileProtocolHandler " + path);
         p.waitFor();
     }
+
+    /**
+     * launch the windows command to select a file
+     * @param path the path to explore
+     * @throws Exception if something goes wrong in the runtime
+     */
+    public void select(String path) throws Exception {
+        
+        Runtime r= Runtime.getRuntime();
+        Process p=null;
+
+        p=r.exec("explorer /e,/select," + path);
+        p.waitFor();
+    }
 }

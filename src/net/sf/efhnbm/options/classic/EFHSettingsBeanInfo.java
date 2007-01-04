@@ -51,14 +51,19 @@ public class EFHSettingsBeanInfo extends SimpleBeanInfo{
             launcherClass.setDisplayName(name);
             launcherClass.setShortDescription(name);
             
-            PropertyDescriptor command =
-                    new PropertyDescriptor(EFHSettings.PROP_COMMAND, EFHSettings.class);
-            name=ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString(EFHSettings.PROP_COMMAND);
-            command.setDisplayName(name);
-            command.setShortDescription(name);
+            PropertyDescriptor commandExplore =
+                    new PropertyDescriptor(EFHSettings.PROP_COMMAND_EXPLORE, EFHSettings.class.getMethod("getCommandExplore", null), EFHSettings.class.getMethod("setCommandExplore", new Class[]{String.class}));
+            name=ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString(EFHSettings.PROP_COMMAND_EXPLORE);
+            commandExplore.setDisplayName(name);
+            commandExplore.setShortDescription(name);
             
+            PropertyDescriptor commandSelect =
+                    new PropertyDescriptor(EFHSettings.PROP_COMMAND_SELECT, EFHSettings.class.getMethod("getCommandSelect", null), EFHSettings.class.getMethod("setCommandSelect", new Class[]{String.class}));
+            name=ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString(EFHSettings.PROP_COMMAND_SELECT);
+            commandSelect.setDisplayName(name);
+            commandSelect.setShortDescription(name);
             
-            return new PropertyDescriptor[] {option, launcherClass, command};
+            return new PropertyDescriptor[] {option, launcherClass, commandExplore, commandSelect};
         } catch (Exception e) {
             return null;
         }
