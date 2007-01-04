@@ -73,7 +73,9 @@ public class EFHHelper {
                 //building a file allow to get the absolute path with the correct separator (/ or \)
                 File file=FileUtil.toFile(fileObject);
                 
-                launcher.explore(file.getAbsolutePath());
+                if (what==EXPLORE) launcher.explore(file.getAbsolutePath());
+                else if (what==SELECT) launcher.select(file.getAbsolutePath());
+                
             } else {
                 NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg")+getOsName(), NotifyDescriptor.ERROR_MESSAGE);
                 DialogDisplayer.getDefault().notify(desc);

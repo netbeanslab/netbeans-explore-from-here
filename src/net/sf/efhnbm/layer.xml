@@ -18,7 +18,30 @@
 
 -->
 <filesystem>
-
+    
+    <folder name="Actions">
+        <folder name="Window">
+            <folder name="SelectDocumentNode">
+                <attr name="org-netbeans-modules-favorites-Select.instance/net-sf-efhnbm-SelectFromHere.instance" boolvalue="true"/>
+                <file name="net-sf-efhnbm-SelectFromHere.instance"/>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="GoTo">
+            <attr name="org-netbeans-modules-favorites-SelectInFavorites.shadow/net-sf-efhnbm-SelectFromHere.shadow" boolvalue="true"/>
+            <file name="net-sf-efhnbm-SelectFromHere.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/SelectDocumentNode/net-sf-efhnbm-SelectFromHere.instance"/>
+            </file>
+        </folder>
+    </folder>
+    
+    <folder name="Shortcuts">
+        <file name="DS-4.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/SelectDocumentNode/net-sf-efhnbm-SelectFromHere.instance"/>
+        </file>
+    </folder>
+    
     <folder name="Projects">
         <folder name="Actions">
             <file name="net.sf.efhnbm.ExploreFromHere.instance"/>
@@ -33,17 +56,17 @@
             </folder>
         </folder>    
     </folder>
- 
+    
     <folder name="Services">
         <file name="net-sf-efhnbm-options-classic-EFHSettings.settings" url="EFHSettings.xml"/>
         <folder name="AutoupdateType">
-         <file name="efhnbm_autoupdate_center.settings" url="EFHAutoUpdate.xml">
-            <attr name="SystemFileSystem.localizingBundle" stringvalue="net.sf.efhnbm.Bundle"/>
-            <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/updatecenters/resources/updateAction.gif"/>
-            <attr name="url_key" stringvalue="URL_EFHNBM"/>
-            <attr name="enabled" boolvalue="true"/>
-         </file>
-      </folder>
+            <file name="efhnbm_autoupdate_center.settings" url="EFHAutoUpdate.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="net.sf.efhnbm.Bundle"/>
+                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/updatecenters/resources/updateAction.gif"/>
+                <attr name="url_key" stringvalue="URL_EFHNBM"/>
+                <attr name="enabled" boolvalue="true"/>
+            </file>
+        </folder>
     </folder>
     
     <folder name="UI">
@@ -59,11 +82,11 @@
     </folder>
     
     <folder name="OptionsDialog">
-      <folder name="Advanced">
-        <file name="EFHOptionCategory.instance">
-            <attr name="instanceClass" stringvalue="net.sf.efhnbm.options.spi.EFHOptionCategory"/>
-        </file>
-      </folder>
+        <folder name="Advanced">
+            <file name="EFHOptionCategory.instance">
+                <attr name="instanceClass" stringvalue="net.sf.efhnbm.options.spi.EFHOptionCategory"/>
+            </file>
+        </folder>
     </folder>
- 
+    
 </filesystem>
