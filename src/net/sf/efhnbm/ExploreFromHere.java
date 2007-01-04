@@ -107,7 +107,7 @@ public class ExploreFromHere extends NodeAction {
     
     /**
      * explore the node
-     * @param node the current node
+     * @param nodes the current node
      */
     protected void performAction(org.openide.nodes.Node[] nodes) {
         helper.performAction(nodes, EFHHelper.EXPLORE);
