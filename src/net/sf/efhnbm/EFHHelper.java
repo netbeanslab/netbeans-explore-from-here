@@ -49,7 +49,11 @@ public class EFHHelper {
         return osName;
     }
     
-    public void performAction(org.openide.nodes.Node[] node, int what){
+    /*
+     * perform actions: explore or select
+     *
+     */
+    void performAction(org.openide.nodes.Node[] node, int what){
         Node currentNode=node[0];
         
         FileObject    fileObject = null;

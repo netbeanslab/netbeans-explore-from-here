@@ -67,12 +67,15 @@ public class LinuxLauncher implements Launcher {
     }
 
     /**
-     * launch the linux command to select a file
+     * launch the linux command to select a file (by now open the parent dir)
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     public void select(String path) throws Exception {
-        NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("do_not_know"), NotifyDescriptor.INFORMATION_MESSAGE);
-        DialogDisplayer.getDefault().notify(desc);
+
+        if (!path.startsWith(File.separator)) path=File.separator+path;
+        
+        File file=new File(path);
+        explore(file.getParentFile().getAbsolutePath());
     }
 }
