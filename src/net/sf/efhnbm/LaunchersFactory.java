@@ -18,8 +18,6 @@ package net.sf.efhnbm;
 import java.util.ResourceBundle;
 import net.sf.efhnbm.launchers.CommandLauncher;
 import net.sf.efhnbm.options.classic.EFHSettings;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.util.SharedClassObject;
 
 /**
@@ -66,7 +64,7 @@ public class LaunchersFactory {
      */
     public synchronized Launcher getLauncher() {
         if (launcher==null){
-            EFHSettings settings=(EFHSettings)SharedClassObject.findObject(EFHSettings.class, true);
+            EFHSettings settings=SharedClassObject.findObject(EFHSettings.class, true);
             
             String todo=settings.getOption();
             

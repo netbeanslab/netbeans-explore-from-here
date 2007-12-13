@@ -15,18 +15,12 @@
  */
 package net.sf.efhnbm;
 
-import java.io.File;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import org.netbeans.api.project.Project;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileUtil;
-import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
-import org.openide.nodes.Node.PropertySet;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.NodeAction;
 import org.openide.util.Lookup.Template;
@@ -83,6 +77,7 @@ public class ExploreFromHere extends NodeAction {
      * @param node the current node
      * @return if action is enabled
      */
+    @SuppressWarnings("unchecked")
     protected boolean enable(org.openide.nodes.Node[] node) {
 
         if (node!=null && node.length==1){
@@ -94,7 +89,7 @@ public class ExploreFromHere extends NodeAction {
                 return true;
             }
             
-            DataObject dataObject=(DataObject)currentNode.getCookie(DataObject.class);
+            DataObject dataObject=currentNode.getCookie(DataObject.class);
             if (dataObject!=null){
                 FileObject fileObj=dataObject.getPrimaryFile();
                 return fileObj.isValid() && !fileObj.isVirtual();

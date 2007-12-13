@@ -47,7 +47,7 @@ public class CommandLauncher implements Launcher {
         Runtime r= Runtime.getRuntime();
         Process p=null;
 
-        String realCommand=MessageFormat.format(commandExplore, new String[]{path});
+        String realCommand=MessageFormat.format(commandExplore, new Object[]{path});
         
         p=r.exec(realCommand);
         p.waitFor();
@@ -63,7 +63,7 @@ public class CommandLauncher implements Launcher {
         Runtime r= Runtime.getRuntime();
         Process p=null;
 
-        String realCommand=MessageFormat.format(commandSelect, new String[]{path});
+        String realCommand=MessageFormat.format(commandSelect, new Object[]{path});
         
         p=r.exec(realCommand);
         p.waitFor();

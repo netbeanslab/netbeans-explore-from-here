@@ -17,8 +17,6 @@ package net.sf.efhnbm.launchers;
 
 import java.io.File;
 import net.sf.efhnbm.Launcher;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 
 /**
  * a generic linux launcher. nautilus or konqueror required

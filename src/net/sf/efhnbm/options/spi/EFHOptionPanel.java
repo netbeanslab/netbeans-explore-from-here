@@ -17,7 +17,6 @@ package net.sf.efhnbm.options.spi;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 

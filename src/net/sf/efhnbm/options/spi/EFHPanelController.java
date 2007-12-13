@@ -38,7 +38,7 @@ public class EFHPanelController extends OptionsPanelController {
     public EFHPanelController() {
         super();
         panel=new EFHOptionPanel();
-        settings=(EFHSettings)SharedClassObject.findObject(EFHSettings.class, true);
+        settings=SharedClassObject.findObject(EFHSettings.class, true);
     }
 
     /**

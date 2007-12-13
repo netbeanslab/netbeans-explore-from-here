@@ -53,6 +53,7 @@ public class EFHHelper {
      * perform actions: explore or select
      *
      */
+    @SuppressWarnings("unchecked")
     void performAction(org.openide.nodes.Node[] node, int what){
         Node currentNode=node[0];
         
@@ -66,7 +67,7 @@ public class EFHHelper {
         
         if (fileObject == null)
         {
-            DataObject dataObject=(DataObject)currentNode.getCookie(DataObject.class);
+            DataObject dataObject=currentNode.getCookie(DataObject.class);
             if (dataObject != null)
                 fileObject = dataObject.getPrimaryFile();
         }

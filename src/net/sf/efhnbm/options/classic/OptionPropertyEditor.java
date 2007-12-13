@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
  * @author alessandro negrin
  * @version $Id$
  */
+@Deprecated
 public class OptionPropertyEditor extends PropertyEditorSupport{
     
     private String[] tags;
@@ -45,6 +46,7 @@ public class OptionPropertyEditor extends PropertyEditorSupport{
      * get allowed values
      * @return the list of available values
      */
+    @Override
     public String[] getTags(){
         return tags;
     }
@@ -54,6 +56,7 @@ public class OptionPropertyEditor extends PropertyEditorSupport{
      * @param string choosen tag
      * @throws java.lang.IllegalArgumentException if something goes wrong
      */
+    @Override
     public void setAsText(String string) throws IllegalArgumentException {
         boolean found=false;
         int i=0;
@@ -71,6 +74,7 @@ public class OptionPropertyEditor extends PropertyEditorSupport{
      * map real value to choice
      * @return the choice that maps the current value
      */
+    @Override
     public String getAsText() {
         String value=(String)getValue();
         boolean found=false;

@@ -8,7 +8,6 @@ import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
-import org.openide.util.actions.SystemAction;
 
 public final class SelectFromHere extends CookieAction {
     
@@ -51,6 +50,7 @@ public final class SelectFromHere extends CookieAction {
         };
     }
     
+    @Override
     protected void initialize() {
         super.initialize();
         // see org.openide.util.actions.SystemAction.iconResource() javadoc for more details
@@ -61,10 +61,12 @@ public final class SelectFromHere extends CookieAction {
         return HelpCtx.DEFAULT_HELP;
     }
     
+    @Override
     protected boolean asynchronous() {
         return false;
     }
 
+    @Override
     protected String iconResource() {
         return "/net/sf/efhnbm/resources/Icon16.gif";
     }

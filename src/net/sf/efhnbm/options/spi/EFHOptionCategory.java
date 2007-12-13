@@ -17,9 +17,7 @@ package net.sf.efhnbm.options.spi;
 
 import net.sf.efhnbm.options.classic.EFHSettings;
 import org.netbeans.spi.options.AdvancedOption;
-import org.netbeans.spi.options.OptionsCategory;
 import org.netbeans.spi.options.OptionsPanelController;
-import org.openide.util.SharedClassObject;
 
 /**
  * spi option category
@@ -29,19 +27,17 @@ import org.openide.util.SharedClassObject;
  */
 public class EFHOptionCategory extends AdvancedOption{
 
-    private EFHSettings settings;
-    
     /** Creates a new instance of EFHOptionCategory */
     public EFHOptionCategory() {
-        settings=(EFHSettings)SharedClassObject.findObject(EFHSettings.class, true);
+        super();
     }
 
     public String getDisplayName() {
-        return settings.displayName();
+        return EFHSettings.displayName();
     }
 
     public String getTooltip() {
-        return settings.displayName();
+        return EFHSettings.displayName();
     }
 
     public OptionsPanelController create() {
