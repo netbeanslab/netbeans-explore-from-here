@@ -15,7 +15,9 @@
  */
 package net.sf.efhnbm;
 
+import java.util.Enumeration;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import net.sf.efhnbm.launchers.CommandLauncher;
 import net.sf.efhnbm.options.classic.EFHSettings;
 import org.openide.util.SharedClassObject;
@@ -27,63 +29,71 @@ import org.openide.util.SharedClassObject;
  * @version $Id$
  */
 public class LaunchersFactory {
-    
-    private String osName=System.getProperty("os.name");
-    
+
+    private String osName = System.getProperty("os.name");
     private static LaunchersFactory instance;
-    
-    private Launcher launcher=null;
-    
+    private Launcher launcher = null;
+
     /* Creates a new instance of LaunchersFactory */
     private LaunchersFactory() {
     }
-    
+
     /**
      * get factory singleton instance
      * @return a factory
      */
-    public static synchronized LaunchersFactory getInstance(){
-        if (instance==null){
-            instance=new LaunchersFactory();
+    public static synchronized LaunchersFactory getInstance() {
+        if (instance == null) {
+            instance = new LaunchersFactory();
         }
-        
+
         return instance;
     }
-    
+
     /**
      * reset the factory (config has been changed)
      *
      */
-    public synchronized void reset(){
-        launcher=null;
+    public synchronized void reset() {
+        launcher = null;
     }
-    
+
     /**
      * get the launcher to start exploring
      * @return the launcher
      */
     public synchronized Launcher getLauncher() {
-        if (launcher==null){
-            EFHSettings settings=SharedClassObject.findObject(EFHSettings.class, true);
-            
-            String todo=settings.getOption();
-            
+        if (launcher == null) {
+            EFHSettings settings = SharedClassObject.findObject(EFHSettings.class, true);
+
+            String todo = settings.getOption();
+
             try {
-                
-                if (EFHSettings.PROP_OPTION_BUNDLE.equals(todo)){
-                    String className=ResourceBundle.getBundle("net/sf/efhnbm/launchers").getString(osName);
-                    launcher=(Launcher)Class.forName(className).newInstance();
+
+                if (EFHSettings.PROP_OPTION_BUNDLE.equals(todo)) {
+
+                    Enumeration<String> keys = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getKeys();
+                    boolean found = false;
+                    while (!found && keys.hasMoreElements()) {
+                        String key = keys.nextElement();
+                        if (Pattern.matches(key, osName)) {
+                            String className = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getString(key);
+                            launcher = (Launcher) Class.forName(className).newInstance();
+                            found=true;
+                        }
+                    }
+
                 } else if (EFHSettings.PROP_OPTION_CLASS.equals(todo)) {
-                    String className=settings.getLauncherClass();
-                    launcher=(Launcher)Class.forName(className).newInstance();
+                    String className = settings.getLauncherClass();
+                    launcher = (Launcher) Class.forName(className).newInstance();
                 } else if (EFHSettings.PROP_OPTION_COMMAND.equals(todo)) {
-                    launcher=new CommandLauncher(settings.getCommandExplore(), settings.getCommandSelect());
+                    launcher = new CommandLauncher(settings.getCommandExplore(), settings.getCommandSelect());
                 }
             } catch (Exception e) {
                 //don't care
             }
         }
         return launcher;
-        
+
     }
 }
