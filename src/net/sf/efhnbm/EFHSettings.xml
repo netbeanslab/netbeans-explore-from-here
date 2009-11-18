@@ -20,7 +20,6 @@
 <settings version="1.0">
     <module name="net.sf.efhnbm"/>
     <instanceof class="org.openide.util.SharedClassObject"/>
-    <instanceof class="org.openide.options.SystemOption"/>
-    <instanceof class="net.sf.efhnbm.options.classic.EFHSettings"/>
-    <instance class="net.sf.efhnbm.options.classic.EFHSettings"/>
+    <instanceof class="net.sf.efhnbm.options.spi.EFHSettings"/>
+    <instance class="net.sf.efhnbm.options.spi.EFHSettings"/>
 </settings>

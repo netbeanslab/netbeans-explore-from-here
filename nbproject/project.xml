@@ -85,7 +85,6 @@
             <public-packages>
                 <package>net.sf.efhnbm</package>
                 <package>net.sf.efhnbm.launchers</package>
-                <package>net.sf.efhnbm.options.classic</package>
                 <package>net.sf.efhnbm.options.spi</package>
             </public-packages>
         </data>

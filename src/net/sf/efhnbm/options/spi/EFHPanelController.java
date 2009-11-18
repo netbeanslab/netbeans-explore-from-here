@@ -17,7 +17,6 @@ package net.sf.efhnbm.options.spi;
 
 import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
-import net.sf.efhnbm.options.classic.EFHSettings;
 import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;

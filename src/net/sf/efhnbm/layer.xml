@@ -58,9 +58,6 @@
     </folder>
     
     <folder name="Services">
-        <file name="net-sf-efhnbm-options-classic-EFHSettings.settings" url="EFHSettings.xml">
-            <attr name="SystemFileSystem.localizingBundle" stringvalue="net.sf.efhnbm.Bundle"/>
-        </file>
         <folder name="AutoupdateType">
             <file name="efhnbm_autoupdate_center.settings" url="EFHAutoUpdate.xml">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="net.sf.efhnbm.Bundle"/>
@@ -68,18 +65,6 @@
                 <attr name="url_key" stringvalue="URL_EFHNBM"/>
                 <attr name="enabled" boolvalue="true"/>
             </file>
-        </folder>
-    </folder>
-    
-    <folder name="UI">
-        <folder name="Services">
-            <folder name="IDEConfiguration">
-                <folder name="ServerAndExternalToolSettings">
-                    <file name="net-sf-efhnbm-options-classic-EFHSettings.shadow">
-                        <attr name="originalFile" stringvalue="Services/net-sf-efhnbm-options-classic-EFHSettings.settings"/>
-                    </file>
-                </folder>
-            </folder>
         </folder>
     </folder>
     

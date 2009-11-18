@@ -15,7 +15,6 @@
  */
 package net.sf.efhnbm.options.spi;
 
-import net.sf.efhnbm.options.classic.EFHSettings;
 import org.netbeans.spi.options.AdvancedOption;
 import org.netbeans.spi.options.OptionsPanelController;
 

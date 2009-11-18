@@ -19,7 +19,7 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import net.sf.efhnbm.launchers.CommandLauncher;
-import net.sf.efhnbm.options.classic.EFHSettings;
+import net.sf.efhnbm.options.spi.EFHSettings;
 import org.openide.util.SharedClassObject;
 
 /**
