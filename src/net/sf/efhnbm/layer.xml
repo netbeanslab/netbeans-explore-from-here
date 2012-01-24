@@ -57,17 +57,6 @@
         </folder>    
     </folder>
     
-    <folder name="Services">
-        <folder name="AutoupdateType">
-            <file name="efhnbm_autoupdate_center.settings" url="EFHAutoUpdate.xml">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="net.sf.efhnbm.Bundle"/>
-                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/updatecenters/resources/updateAction.gif"/>
-                <attr name="url_key" stringvalue="URL_EFHNBM"/>
-                <attr name="enabled" boolvalue="true"/>
-            </file>
-        </folder>
-    </folder>
-    
     <folder name="OptionsDialog">
         <folder name="Advanced">
             <file name="EFHOptionCategory.instance">
