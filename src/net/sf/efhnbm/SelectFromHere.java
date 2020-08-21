@@ -1,6 +1,7 @@
 package net.sf.efhnbm;
 
 import net.sf.efhnbm.utils.Utils;
+import org.netbeans.api.annotations.common.StaticResource;
 import org.openide.cookies.EditCookie;
 import org.openide.cookies.EditorCookie;
 import org.openide.loaders.DataObject;
@@ -11,7 +12,8 @@ import org.openide.util.actions.CookieAction;
 
 public final class SelectFromHere extends CookieAction {
 
-    private static final String ICON_PATH = "/net/sf/efhnbm/resources/Icon16.gif"; // NOI18N
+    @StaticResource
+    private static final String ICON_PATH = "net/sf/efhnbm/resources/Icon16.gif"; // NOI18N
     private static final long serialVersionUID = 1791856667036029663L;
 
     private final EFHHelper helper;
