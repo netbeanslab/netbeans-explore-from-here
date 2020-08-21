@@ -16,7 +16,6 @@
 package net.sf.efhnbm;
 
 import java.io.File;
-import javax.swing.SwingUtilities;
 import net.sf.efhnbm.utils.Utils;
 import org.netbeans.api.project.Project;
 import org.openide.filesystems.FileObject;
@@ -94,10 +93,6 @@ public class EFHHelper {
         "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}"
     })
     private void showError() {
-        if (!SwingUtilities.isEventDispatchThread()) {
-            SwingUtilities.invokeLater(() -> Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME)));
-        } else {
-            Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
-        }
+        Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
     }
 }

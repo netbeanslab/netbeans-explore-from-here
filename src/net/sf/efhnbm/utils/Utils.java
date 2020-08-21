@@ -13,6 +13,7 @@
  */
 package net.sf.efhnbm.utils;
 
+import javax.swing.SwingUtilities;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 
@@ -24,11 +25,19 @@ public final class Utils {
     }
 
     /**
-     * Show the error message.
+     * Show the error message (in EDT).
      *
      * @param message the error message
      */
     public static void showErrorMessage(String message) {
+        if (SwingUtilities.isEventDispatchThread()) {
+            showErrorMessageInner(message);
+        } else {
+            SwingUtilities.invokeLater(() -> showErrorMessageInner(message));
+        }
+    }
+
+    private static void showErrorMessageInner(String message) {
         NotifyDescriptor desc = new NotifyDescriptor.Message(message, NotifyDescriptor.ERROR_MESSAGE);
         DialogDisplayer.getDefault().notify(desc);
     }
