@@ -16,6 +16,7 @@
 package net.sf.efhnbm;
 
 import java.io.File;
+import javax.swing.SwingUtilities;
 import net.sf.efhnbm.utils.Utils;
 import org.netbeans.api.project.Project;
 import org.openide.filesystems.FileObject;
@@ -24,6 +25,7 @@ import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.Lookup.Template;
 import org.openide.util.NbBundle;
+import org.openide.util.RequestProcessor;
 
 /**
  *
@@ -35,6 +37,8 @@ public class EFHHelper {
         EXPLORE,
         SELECT,
     }
+
+    private static final RequestProcessor RP = new RequestProcessor(EFHHelper.class);
 
     /**
      * Creates a new instance of EFHHelper.
@@ -51,7 +55,7 @@ public class EFHHelper {
      */
     @NbBundle.Messages({
         "# {0} - os name",
-        "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}",
+        "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}"
     })
     @SuppressWarnings("unchecked")
     void performAction(Node[] node, ActionKind kind) {
@@ -67,20 +71,32 @@ public class EFHHelper {
                 fileObject = dataObject.getPrimaryFile();
             }
         }
-        try {
-            Launcher launcher = getLauncher();
-            if (launcher != null && fileObject != null) {
-                //building a file allow to get the absolute path with the correct separator (/ or \)
-                File file = FileUtil.toFile(fileObject);
-                if (kind == ActionKind.EXPLORE) {
-                    launcher.explore(file.getAbsolutePath());
-                } else if (kind == ActionKind.SELECT) {
-                    launcher.select(file.getAbsolutePath());
+        final FileObject fo = fileObject;
+        RP.post(() -> {
+            // don't run in EDT
+            try {
+                Launcher launcher = getLauncher();
+                if (launcher != null && fo != null) {
+                    //building a file allow to get the absolute path with the correct separator (/ or \)
+                    File file = FileUtil.toFile(fo);
+                    if (kind == ActionKind.EXPLORE) {
+                        launcher.explore(file.getAbsolutePath());
+                    } else if (kind == ActionKind.SELECT) {
+                        launcher.select(file.getAbsolutePath());
+                    }
+                } else {
+                    showError();
                 }
-            } else {
-                Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
+            } catch (Exception e) {
+                showError();
             }
-        } catch (Exception e) {
+        });
+    }
+
+    private void showError() {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            SwingUtilities.invokeLater(() -> Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME)));
+        } else {
             Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
         }
     }
