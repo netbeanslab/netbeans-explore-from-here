@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -30,7 +30,8 @@ public class CommandLauncher implements Launcher {
     private final String commandSelect;
 
     /**
-     * default constructor
+     * default constructor.
+     *
      * @param commandExplore
      * @param commandSelect
      */
@@ -40,20 +41,16 @@ public class CommandLauncher implements Launcher {
     }
 
     /**
-     * launch the command to explore a directory
+     * launch the command to explore a directory.
      *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     @Override
     public void explore(String path) throws Exception {
-
         Runtime r = Runtime.getRuntime();
-        Process p = null;
-
         String realCommand = MessageFormat.format(commandExplore, new Object[]{path});
-
-        p = r.exec(realCommand);
+        Process p = r.exec(realCommand);
         p.waitFor();
     }
 
@@ -65,13 +62,9 @@ public class CommandLauncher implements Launcher {
      */
     @Override
     public void select(String path) throws Exception {
-
         Runtime r = Runtime.getRuntime();
-        Process p = null;
-
         String realCommand = MessageFormat.format(commandSelect, new Object[]{path});
-
-        p = r.exec(realCommand);
+        Process p = r.exec(realCommand);
         p.waitFor();
     }
 }

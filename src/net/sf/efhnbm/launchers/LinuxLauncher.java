@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -32,57 +32,48 @@ public class LinuxLauncher implements Launcher {
     private String commandPrefix;
 
     /**
-     * default constructor
+     * default constructor.
      */
     public LinuxLauncher() {
-
         File nautilus = new File(NAUTILUS_PATH);
         File konqueror = new File(KONQUEROR_PATH);
-
         if (nautilus.exists()) {
-            commandPrefix = NAUTILUS_PATH + " --no-desktop ";
+            commandPrefix = NAUTILUS_PATH + " --no-desktop "; // NOI18N
         } else if (konqueror.exists()) {
             commandPrefix = KONQUEROR_PATH + ' ';
         }
-
     }
 
     /**
-     * launch the linux command to explore a directory
+     * launch the linux command to explore a directory.
      *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     @Override
     public void explore(String path) throws Exception {
-
         if (commandPrefix == null) {
-            throw new RuntimeException("can't find a good command; no " + NAUTILUS_PATH + " and no " + KONQUEROR_PATH);
+            throw new RuntimeException("can't find a good command; no " + NAUTILUS_PATH + " and no " + KONQUEROR_PATH); // NOI18N
         }
-
         if (!path.startsWith(File.separator)) {
             path = File.separator + path;
         }
-
         Runtime r = Runtime.getRuntime();
-
         Process p = r.exec(commandPrefix + path);
         p.waitFor();
     }
 
     /**
-     * launch the linux command to select a file (by now open the parent dir)
+     * launch the linux command to select a file (by now open the parent dir).
      *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     @Override
     public void select(String path) throws Exception {
-
         if (!path.startsWith(File.separator)) {
             path = File.separator + path;
         }
-
         File file = new File(path);
         explore(file.getParentFile().getAbsolutePath());
     }
