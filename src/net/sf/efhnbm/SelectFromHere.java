@@ -11,6 +11,8 @@ import org.openide.util.actions.CookieAction;
 
 public final class SelectFromHere extends CookieAction {
 
+    private static final long serialVersionUID = 1791856667036029663L;
+
     EFHHelper helper;
     String name;
 

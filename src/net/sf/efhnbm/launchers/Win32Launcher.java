@@ -41,9 +41,8 @@ public class Win32Launcher implements Launcher {
     public void explore(String path) throws Exception {
 
         Runtime r = Runtime.getRuntime();
-        Process p = null;
 
-        p = r.exec("rundll32 url.dll,FileProtocolHandler " + path);
+        Process p = r.exec("rundll32 url.dll,FileProtocolHandler " + path);
         p.waitFor();
     }
 
@@ -57,9 +56,8 @@ public class Win32Launcher implements Launcher {
     public void select(String path) throws Exception {
 
         Runtime r = Runtime.getRuntime();
-        Process p = null;
 
-        p = r.exec("explorer /e,/select," + path);
+        Process p = r.exec("explorer /e,/select," + path);
         p.waitFor();
     }
 }

@@ -30,7 +30,7 @@ import org.openide.util.SharedClassObject;
  */
 public class LaunchersFactory {
 
-    private String osName = System.getProperty("os.name");
+    private final String osName = System.getProperty("os.name");
     private static LaunchersFactory instance;
     private Launcher launcher = null;
 

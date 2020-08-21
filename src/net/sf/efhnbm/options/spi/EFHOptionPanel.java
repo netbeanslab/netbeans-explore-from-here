@@ -36,7 +36,9 @@ import javax.swing.LayoutStyle;
  * @author alessandro negrin
  * @version $Id$
  */
-public class EFHOptionPanel extends javax.swing.JPanel {
+public class EFHOptionPanel extends JPanel {
+
+    private static final long serialVersionUID = 9018890829648160858L;
 
     /**
      * Creates new form EFHOptionPanel

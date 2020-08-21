@@ -30,8 +30,8 @@ import org.openide.util.SharedClassObject;
  */
 public class EFHPanelController extends OptionsPanelController {
 
-    private EFHOptionPanel panel;
-    private EFHSettings settings;
+    private final EFHOptionPanel panel;
+    private final EFHSettings settings;
     private boolean changed = false;
 
     /**

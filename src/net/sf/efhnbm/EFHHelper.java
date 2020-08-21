@@ -32,8 +32,7 @@ import org.openide.util.Lookup.Template;
  */
 public class EFHHelper {
 
-    private String osName = System.getProperty("os.name");
-    private String name = null;
+    private final String osName = System.getProperty("os.name");
 
     static int EXPLORE = 0;
     static int SELECT = 1;

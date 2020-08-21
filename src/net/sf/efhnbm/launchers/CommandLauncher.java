@@ -26,11 +26,13 @@ import net.sf.efhnbm.Launcher;
  */
 public class CommandLauncher implements Launcher {
 
-    private String commandExplore;
-    private String commandSelect;
+    private final String commandExplore;
+    private final String commandSelect;
 
     /**
      * default constructor
+     * @param commandExplore
+     * @param commandSelect
      */
     public CommandLauncher(String commandExplore, String commandSelect) {
         this.commandExplore = commandExplore;

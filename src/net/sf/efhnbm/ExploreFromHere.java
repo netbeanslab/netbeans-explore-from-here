@@ -33,6 +33,8 @@ import org.openide.util.Lookup.Template;
  */
 public class ExploreFromHere extends NodeAction {
 
+    private static final long serialVersionUID = 3616428729074090297L;
+
     EFHHelper helper;
     String name;
 
@@ -67,7 +69,7 @@ public class ExploreFromHere extends NodeAction {
     /**
      * set the name of the action
      */
-    protected void setName() {
+    private void setName() {
         try {
             name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here") + helper.getOsName();
         } catch (MissingResourceException mre) {

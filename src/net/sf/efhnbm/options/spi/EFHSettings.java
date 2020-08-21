@@ -37,7 +37,6 @@ import org.openide.util.SharedClassObject;
  */
 public class EFHSettings extends SharedClassObject {
 
-    static final long serialVersionUID = 1234567890L;
     public static final String PROP_OPTION = "option";
     public static final String PROP_OPTION_BUNDLE = "bundle";
     public static final String PROP_OPTION_CLASS = "class";
@@ -45,6 +44,7 @@ public class EFHSettings extends SharedClassObject {
     public static final String PROP_LAUNCHER_CLASS = "launcher_class";
     public static final String PROP_COMMAND_EXPLORE = "command";//keeping "command" for backward comp.
     public static final String PROP_COMMAND_SELECT = "command_select";
+    private static final long serialVersionUID = 588225648352926127L;
 
     /**
      * Creates a new instance of EFHSettings
@@ -115,6 +115,8 @@ public class EFHSettings extends SharedClassObject {
     /**
      * serialize options
      *
+     * @param out
+     * @throws java.io.IOException
      */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
@@ -124,6 +126,9 @@ public class EFHSettings extends SharedClassObject {
     /**
      * deserialize options
      *
+     * @param in
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -174,6 +179,9 @@ public class EFHSettings extends SharedClassObject {
     /**
      * is a property has changed launchers factory must be reset
      *
+     * @param name
+     * @param oldValue
+     * @param newValue
      */
     @Override
     protected void firePropertyChange(String name, Object oldValue, Object newValue) {

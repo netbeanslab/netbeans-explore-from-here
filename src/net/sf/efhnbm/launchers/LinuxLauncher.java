@@ -26,8 +26,8 @@ import net.sf.efhnbm.Launcher;
  */
 public class LinuxLauncher implements Launcher {
 
-    private static final String nautilusPath = "/usr/bin/nautilus";
-    private static final String konquerorPath = "/usr/bin/konqueror";
+    private static final String NAUTILUS_PATH = "/usr/bin/nautilus"; // NOI18N
+    private static final String KONQUEROR_PATH = "/usr/bin/konqueror"; // NOI18N
 
     private String commandPrefix;
 
@@ -36,13 +36,13 @@ public class LinuxLauncher implements Launcher {
      */
     public LinuxLauncher() {
 
-        File nautilus = new File(nautilusPath);
-        File konqueror = new File(konquerorPath);
+        File nautilus = new File(NAUTILUS_PATH);
+        File konqueror = new File(KONQUEROR_PATH);
 
         if (nautilus.exists()) {
-            commandPrefix = nautilusPath + " --no-desktop ";
+            commandPrefix = NAUTILUS_PATH + " --no-desktop ";
         } else if (konqueror.exists()) {
-            commandPrefix = konquerorPath + ' ';
+            commandPrefix = KONQUEROR_PATH + ' ';
         }
 
     }
@@ -57,7 +57,7 @@ public class LinuxLauncher implements Launcher {
     public void explore(String path) throws Exception {
 
         if (commandPrefix == null) {
-            throw new RuntimeException("can't find a good command; no " + nautilusPath + " and no " + konquerorPath);
+            throw new RuntimeException("can't find a good command; no " + NAUTILUS_PATH + " and no " + KONQUEROR_PATH);
         }
 
         if (!path.startsWith(File.separator)) {
@@ -65,9 +65,8 @@ public class LinuxLauncher implements Launcher {
         }
 
         Runtime r = Runtime.getRuntime();
-        Process p = null;
 
-        p = r.exec(commandPrefix + path);
+        Process p = r.exec(commandPrefix + path);
         p.waitFor();
     }
 
