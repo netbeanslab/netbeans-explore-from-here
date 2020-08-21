@@ -31,29 +31,32 @@ import org.openide.util.NbPreferences;
 import org.openide.util.SharedClassObject;
 
 /**
- * module  settings
+ * module settings
+ *
  * @author alessandro negrin
  * @version $Id$
  */
 public class EFHSettings extends SharedClassObject {
 
-    static final long serialVersionUID=1234567890L;
-    public static final String PROP_OPTION="option";
-    public static final String PROP_OPTION_BUNDLE="bundle";
-    public static final String PROP_OPTION_CLASS="class";
-    public static final String PROP_OPTION_COMMAND="command";
-    public static final String PROP_LAUNCHER_CLASS="launcher_class";
-    public static final String PROP_COMMAND_EXPLORE="command";//keeping "command" for backward comp.
-    public static final String PROP_COMMAND_SELECT="command_select";
+    static final long serialVersionUID = 1234567890L;
+    public static final String PROP_OPTION = "option";
+    public static final String PROP_OPTION_BUNDLE = "bundle";
+    public static final String PROP_OPTION_CLASS = "class";
+    public static final String PROP_OPTION_COMMAND = "command";
+    public static final String PROP_LAUNCHER_CLASS = "launcher_class";
+    public static final String PROP_COMMAND_EXPLORE = "command";//keeping "command" for backward comp.
+    public static final String PROP_COMMAND_SELECT = "command_select";
 
-    /** Creates a new instance of EFHSettings */
+    /**
+     * Creates a new instance of EFHSettings
+     */
     public EFHSettings() {
     }
 
     /**
-     *returns the display name
+     * returns the display name
      *
-     *@return the name to display
+     * @return the name to display
      *
      */
     public static String displayName() {
@@ -65,8 +68,8 @@ public class EFHSettings extends SharedClassObject {
     }
 
     private void putPreference(String key, String value) throws BackingStoreException {
-        Preferences prefs=NbPreferences.forModule(ExploreFromHere.class);
-        if (prefs==null || key==null || value==null) {
+        Preferences prefs = NbPreferences.forModule(ExploreFromHere.class);
+        if (prefs == null || key == null || value == null) {
             //do nothing
         } else {
             prefs.put(key, value);
@@ -75,8 +78,8 @@ public class EFHSettings extends SharedClassObject {
     }
 
     private String getPreference(String key, String defaultValue) {
-        Preferences prefs=NbPreferences.forModule(ExploreFromHere.class);
-        if (prefs==null) {
+        Preferences prefs = NbPreferences.forModule(ExploreFromHere.class);
+        if (prefs == null) {
             return defaultValue;
         } else {
             return prefs.get(key, defaultValue);
@@ -109,7 +112,7 @@ public class EFHSettings extends SharedClassObject {
             putPreference(PROP_OPTION, getOption());
             putPreference(PROP_COMMAND_SELECT, getCommandSelect());
         } catch (BackingStoreException bse) {
-            NotifyDescriptor desc=new NotifyDescriptor.Message("can't save", NotifyDescriptor.ERROR_MESSAGE);
+            NotifyDescriptor desc = new NotifyDescriptor.Message("can't save", NotifyDescriptor.ERROR_MESSAGE);
             DialogDisplayer.getDefault().notify(desc);
         }
     }
@@ -134,6 +137,7 @@ public class EFHSettings extends SharedClassObject {
 
     /**
      * get help context for action
+     *
      * @return the help context (default)
      */
     public HelpCtx getHelpCtx() {

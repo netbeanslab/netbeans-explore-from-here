@@ -20,6 +20,7 @@ import net.sf.efhnbm.Launcher;
 
 /**
  * a generic command launcher
+ *
  * @author alessandro negrin
  * @version $Id$
  */
@@ -27,45 +28,46 @@ public class CommandLauncher implements Launcher {
 
     private String commandExplore;
     private String commandSelect;
-    
-    
+
     /**
      * default constructor
      */
     public CommandLauncher(String commandExplore, java.lang.String commandSelect) {
-        this.commandExplore=commandExplore;
-        this.commandSelect=commandSelect;
+        this.commandExplore = commandExplore;
+        this.commandSelect = commandSelect;
     }
-    
+
     /**
      * launch the command to explore a directory
+     *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     public void explore(String path) throws Exception {
-        
-        Runtime r= Runtime.getRuntime();
-        Process p=null;
 
-        String realCommand=MessageFormat.format(commandExplore, new Object[]{path});
-        
-        p=r.exec(realCommand);
+        Runtime r = Runtime.getRuntime();
+        Process p = null;
+
+        String realCommand = MessageFormat.format(commandExplore, new Object[]{path});
+
+        p = r.exec(realCommand);
         p.waitFor();
     }
 
     /**
      * launch the command to select a file
+     *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     public void select(String path) throws Exception {
-        
-        Runtime r= Runtime.getRuntime();
-        Process p=null;
 
-        String realCommand=MessageFormat.format(commandSelect, new Object[]{path});
-        
-        p=r.exec(realCommand);
+        Runtime r = Runtime.getRuntime();
+        Process p = null;
+
+        String realCommand = MessageFormat.format(commandSelect, new Object[]{path});
+
+        p = r.exec(realCommand);
         p.waitFor();
     }
 }

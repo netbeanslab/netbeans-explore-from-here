@@ -10,57 +10,57 @@ import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
 
 public final class SelectFromHere extends CookieAction {
-    
+
     EFHHelper helper;
     String name;
 
-    public SelectFromHere(){
-        helper=new EFHHelper();
+    public SelectFromHere() {
+        helper = new EFHHelper();
         setName();
     }
-    
+
     protected void performAction(Node[] nodes) {
-       helper.performAction(nodes, EFHHelper.SELECT);
+        helper.performAction(nodes, EFHHelper.SELECT);
     }
-    
+
     protected int mode() {
         return CookieAction.MODE_EXACTLY_ONE;
     }
-    
+
     /**
      * set the name of the action
      */
-    protected void setName(){
-        try{
-            name=ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("select_from_here")+helper.getOsName();
-        } catch (MissingResourceException mre){
-            name="&Select with OS";
+    protected void setName() {
+        try {
+            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("select_from_here") + helper.getOsName();
+        } catch (MissingResourceException mre) {
+            name = "&Select with OS";
         }
     }
 
     public String getName() {
         return name;
     }
-    
+
     protected Class[] cookieClasses() {
-        return new Class[] {
+        return new Class[]{
             EditorCookie.class,
             EditCookie.class,
             DataObject.class
         };
     }
-    
+
     @Override
     protected void initialize() {
         super.initialize();
         // see org.openide.util.actions.SystemAction.iconResource() javadoc for more details
         putValue("noIconInMenu", Boolean.TRUE);
     }
-    
+
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
-    
+
     @Override
     protected boolean asynchronous() {
         return false;
@@ -72,4 +72,3 @@ public final class SelectFromHere extends CookieAction {
     }
 
 }
-

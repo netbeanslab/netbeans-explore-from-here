@@ -40,6 +40,7 @@ public class LaunchersFactory {
 
     /**
      * get factory singleton instance
+     *
      * @return a factory
      */
     public static synchronized LaunchersFactory getInstance() {
@@ -60,6 +61,7 @@ public class LaunchersFactory {
 
     /**
      * get the launcher to start exploring
+     *
      * @return the launcher
      */
     public synchronized Launcher getLauncher() {
@@ -79,7 +81,7 @@ public class LaunchersFactory {
                         if (Pattern.matches(key, osName)) {
                             String className = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getString(key);
                             launcher = (Launcher) Class.forName(className).newInstance();
-                            found=true;
+                            found = true;
                         }
                     }
 

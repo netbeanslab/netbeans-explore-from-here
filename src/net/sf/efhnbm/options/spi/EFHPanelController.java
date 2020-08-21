@@ -24,20 +24,23 @@ import org.openide.util.SharedClassObject;
 
 /**
  * spi option panel controller
+ *
  * @author alessandro negrin
  * @version $Id$
  */
 public class EFHPanelController extends OptionsPanelController {
-    
+
     private EFHOptionPanel panel;
     private EFHSettings settings;
-    private boolean changed=false;
-    
-    /** Creates a new instance of EFHPanelController */
+    private boolean changed = false;
+
+    /**
+     * Creates a new instance of EFHPanelController
+     */
     public EFHPanelController() {
         super();
-        panel=new EFHOptionPanel();
-        settings=SharedClassObject.findObject(EFHSettings.class, true);
+        panel = new EFHOptionPanel();
+        settings = SharedClassObject.findObject(EFHSettings.class, true);
     }
 
     /**
@@ -45,40 +48,40 @@ public class EFHPanelController extends OptionsPanelController {
      *
      */
     public void update() {
-        if (EFHSettings.PROP_OPTION_BUNDLE.equals(settings.getOption())){
+        if (EFHSettings.PROP_OPTION_BUNDLE.equals(settings.getOption())) {
             panel.getBundleOption().setSelected(true);
             panel.getClassTextField().setEnabled(false);
-            
+
             panel.getCommandTextFieldExplore().setEnabled(false);
             panel.getBrowseCommandButtonExplore().setEnabled(false);
             panel.getCommandTextFieldSelect().setEnabled(false);
             panel.getBrowseCommandButtonSelect().setEnabled(false);
-            
-        } else if (EFHSettings.PROP_OPTION_CLASS.equals(settings.getOption())){
+
+        } else if (EFHSettings.PROP_OPTION_CLASS.equals(settings.getOption())) {
             panel.getClassOption().setSelected(true);
             panel.getClassTextField().setEnabled(true);
-            
+
             panel.getCommandTextFieldExplore().setEnabled(false);
             panel.getBrowseCommandButtonExplore().setEnabled(false);
             panel.getCommandTextFieldSelect().setEnabled(false);
             panel.getBrowseCommandButtonSelect().setEnabled(false);
-            
-        } else if (EFHSettings.PROP_OPTION_COMMAND.equals(settings.getOption())){
+
+        } else if (EFHSettings.PROP_OPTION_COMMAND.equals(settings.getOption())) {
             panel.getCommandOption().setSelected(true);
             panel.getClassTextField().setEnabled(false);
-            
+
             panel.getCommandTextFieldExplore().setEnabled(true);
             panel.getBrowseCommandButtonExplore().setEnabled(true);
             panel.getCommandTextFieldSelect().setEnabled(true);
             panel.getBrowseCommandButtonSelect().setEnabled(true);
-            
+
         }
-        
+
         panel.getClassTextField().setText(settings.getLauncherClass());
         panel.getCommandTextFieldExplore().setText(settings.getCommandExplore());
         panel.getCommandTextFieldSelect().setText(settings.getCommandSelect());
-        
-        changed=false;
+
+        changed = false;
     }
 
     /**
@@ -86,22 +89,22 @@ public class EFHPanelController extends OptionsPanelController {
      *
      */
     public void applyChanges() {
-        if (panel.getBundleOption().isSelected()){
+        if (panel.getBundleOption().isSelected()) {
             settings.setOption(EFHSettings.PROP_OPTION_BUNDLE);
-        } else if (panel.getClassOption().isSelected()){
+        } else if (panel.getClassOption().isSelected()) {
             settings.setOption(EFHSettings.PROP_OPTION_CLASS);
-        } else if (panel.getCommandOption().isSelected()){
+        } else if (panel.getCommandOption().isSelected()) {
             settings.setOption(EFHSettings.PROP_OPTION_COMMAND);
         }
-        
+
         settings.setLauncherClass(panel.getClassTextField().getText());
         settings.setCommandExplore(panel.getCommandTextFieldExplore().getText());
         settings.setCommandSelect(panel.getCommandTextFieldSelect().getText());
-        
+
         settings.firePropertiesHaveBeenChanged();
-        
-        changed=true;
-        
+
+        changed = true;
+
     }
 
     /**
@@ -132,5 +135,5 @@ public class EFHPanelController extends OptionsPanelController {
 
     public void removePropertyChangeListener(PropertyChangeListener l) {
     }
-    
+
 }

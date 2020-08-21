@@ -30,17 +30,19 @@ import org.openide.util.Lookup.Template;
  * @author alessandro
  */
 public class EFHHelper {
-    
-    private String osName=System.getProperty("os.name");
-    private String name=null;
 
-    static int EXPLORE=0;
-    static int SELECT=1;
+    private String osName = System.getProperty("os.name");
+    private String name = null;
 
-    /** Creates a new instance of EFHHelper */
+    static int EXPLORE = 0;
+    static int SELECT = 1;
+
+    /**
+     * Creates a new instance of EFHHelper
+     */
     public EFHHelper() {
     }
-    
+
     private Launcher getLauncher() {
         return LaunchersFactory.getInstance().getLauncher();
     }
@@ -48,46 +50,49 @@ public class EFHHelper {
     public String getOsName() {
         return osName;
     }
-    
+
     /*
      * perform actions: explore or select
      *
      */
     @SuppressWarnings("unchecked")
-    void performAction(org.openide.nodes.Node[] node, int what){
-        Node currentNode=node[0];
-        
-        FileObject    fileObject = null;
-        
-        Project projects[] = (Project[])currentNode.getLookup().lookup(new Template(Project.class)).allInstances().toArray(new Project[0]);
-        
-        if (projects !=null && projects.length ==1 && projects[0] != null){
+    void performAction(org.openide.nodes.Node[] node, int what) {
+        Node currentNode = node[0];
+
+        FileObject fileObject = null;
+
+        Project projects[] = (Project[]) currentNode.getLookup().lookup(new Template(Project.class)).allInstances().toArray(new Project[0]);
+
+        if (projects != null && projects.length == 1 && projects[0] != null) {
             fileObject = projects[0].getProjectDirectory();
         }
-        
-        if (fileObject == null)
-        {
-            DataObject dataObject=currentNode.getCookie(DataObject.class);
-            if (dataObject != null)
+
+        if (fileObject == null) {
+            DataObject dataObject = currentNode.getCookie(DataObject.class);
+            if (dataObject != null) {
                 fileObject = dataObject.getPrimaryFile();
+            }
         }
-        try{
-            Launcher launcher=getLauncher();
-            if (launcher!=null && fileObject != null){
-                
+        try {
+            Launcher launcher = getLauncher();
+            if (launcher != null && fileObject != null) {
+
                 //building a file allow to get the absolute path with the correct separator (/ or \)
-                File file=FileUtil.toFile(fileObject);
-                
-                if (what==EXPLORE) launcher.explore(file.getAbsolutePath());
-                else if (what==SELECT) launcher.select(file.getAbsolutePath());
-                
+                File file = FileUtil.toFile(fileObject);
+
+                if (what == EXPLORE) {
+                    launcher.explore(file.getAbsolutePath());
+                } else if (what == SELECT) {
+                    launcher.select(file.getAbsolutePath());
+                }
+
             } else {
-                NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg")+getOsName(), NotifyDescriptor.ERROR_MESSAGE);
+                NotifyDescriptor desc = new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
                 DialogDisplayer.getDefault().notify(desc);
             }
-        } catch (Exception e){
-                NotifyDescriptor desc=new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg")+getOsName(), NotifyDescriptor.ERROR_MESSAGE);
-                DialogDisplayer.getDefault().notify(desc);
+        } catch (Exception e) {
+            NotifyDescriptor desc = new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
+            DialogDisplayer.getDefault().notify(desc);
         }
     }
 

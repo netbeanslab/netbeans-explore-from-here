@@ -20,60 +20,69 @@ import net.sf.efhnbm.Launcher;
 
 /**
  * a generic linux launcher. nautilus or konqueror required
+ *
  * @author alessandro negrin
  * @version $Id$
  */
 public class LinuxLauncher implements Launcher {
-    
-    private static final String nautilusPath="/usr/bin/nautilus";
-    private static final String konquerorPath="/usr/bin/konqueror";
-    
+
+    private static final String nautilusPath = "/usr/bin/nautilus";
+    private static final String konquerorPath = "/usr/bin/konqueror";
+
     private String commandPrefix;
-    
+
     /**
      * default constructor
      */
     public LinuxLauncher() {
-        
-        File nautilus=new File(nautilusPath);
-        File konqueror=new File(konquerorPath);
-        
-        if (nautilus.exists()){
-            commandPrefix=nautilusPath+" --no-desktop ";
-        } else if (konqueror.exists()){
-            commandPrefix=konquerorPath+' ';
+
+        File nautilus = new File(nautilusPath);
+        File konqueror = new File(konquerorPath);
+
+        if (nautilus.exists()) {
+            commandPrefix = nautilusPath + " --no-desktop ";
+        } else if (konqueror.exists()) {
+            commandPrefix = konquerorPath + ' ';
         }
-        
+
     }
-    
+
     /**
      * launch the linux command to explore a directory
+     *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     public void explore(String path) throws Exception {
-        
-        if (commandPrefix==null) throw new RuntimeException("can't find a good command; no "+nautilusPath+" and no "+konquerorPath);
-        
-        if (!path.startsWith(File.separator)) path=File.separator+path;
-        
-        Runtime r= Runtime.getRuntime();
-        Process p=null;
 
-        p=r.exec(commandPrefix+path);
+        if (commandPrefix == null) {
+            throw new RuntimeException("can't find a good command; no " + nautilusPath + " and no " + konquerorPath);
+        }
+
+        if (!path.startsWith(File.separator)) {
+            path = File.separator + path;
+        }
+
+        Runtime r = Runtime.getRuntime();
+        Process p = null;
+
+        p = r.exec(commandPrefix + path);
         p.waitFor();
     }
 
     /**
      * launch the linux command to select a file (by now open the parent dir)
+     *
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
     public void select(String path) throws Exception {
 
-        if (!path.startsWith(File.separator)) path=File.separator+path;
-        
-        File file=new File(path);
+        if (!path.startsWith(File.separator)) {
+            path = File.separator + path;
+        }
+
+        File file = new File(path);
         explore(file.getParentFile().getAbsolutePath());
     }
 }

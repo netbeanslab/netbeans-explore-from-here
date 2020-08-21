@@ -24,9 +24,11 @@ import org.netbeans.spi.options.OptionsPanelController;
  * @author alessandro negrin
  * @version $Id$
  */
-public class EFHOptionCategory extends AdvancedOption{
+public class EFHOptionCategory extends AdvancedOption {
 
-    /** Creates a new instance of EFHOptionCategory */
+    /**
+     * Creates a new instance of EFHOptionCategory
+     */
     public EFHOptionCategory() {
         super();
     }
@@ -42,5 +44,5 @@ public class EFHOptionCategory extends AdvancedOption{
     public OptionsPanelController create() {
         return new EFHPanelController();
     }
-    
+
 }
