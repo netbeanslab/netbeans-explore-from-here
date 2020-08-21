@@ -32,7 +32,7 @@ public class CommandLauncher implements Launcher {
     /**
      * default constructor
      */
-    public CommandLauncher(String commandExplore, java.lang.String commandSelect) {
+    public CommandLauncher(String commandExplore, String commandSelect) {
         this.commandExplore = commandExplore;
         this.commandSelect = commandSelect;
     }

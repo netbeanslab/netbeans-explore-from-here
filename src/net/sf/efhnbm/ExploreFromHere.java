@@ -83,7 +83,7 @@ public class ExploreFromHere extends NodeAction {
      */
     @SuppressWarnings("unchecked")
     @Override
-    protected boolean enable(org.openide.nodes.Node[] node) {
+    protected boolean enable(Node[] node) {
 
         if (node != null && node.length == 1) {
             Node currentNode = node[0];
@@ -111,7 +111,7 @@ public class ExploreFromHere extends NodeAction {
      * @param nodes the current node
      */
     @Override
-    protected void performAction(org.openide.nodes.Node[] nodes) {
+    protected void performAction(Node[] nodes) {
         helper.performAction(nodes, EFHHelper.EXPLORE);
     }
 }

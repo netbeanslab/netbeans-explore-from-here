@@ -16,6 +16,7 @@
 package net.sf.efhnbm;
 
 import java.io.File;
+import java.util.ResourceBundle;
 import org.netbeans.api.project.Project;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
@@ -56,7 +57,7 @@ public class EFHHelper {
      *
      */
     @SuppressWarnings("unchecked")
-    void performAction(org.openide.nodes.Node[] node, int what) {
+    void performAction(Node[] node, int what) {
         Node currentNode = node[0];
 
         FileObject fileObject = null;
@@ -87,11 +88,11 @@ public class EFHHelper {
                 }
 
             } else {
-                NotifyDescriptor desc = new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
+                NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
                 DialogDisplayer.getDefault().notify(desc);
             }
         } catch (Exception e) {
-            NotifyDescriptor desc = new NotifyDescriptor.Message(java.util.ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
+            NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
             DialogDisplayer.getDefault().notify(desc);
         }
     }
