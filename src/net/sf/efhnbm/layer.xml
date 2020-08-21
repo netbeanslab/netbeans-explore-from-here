@@ -18,7 +18,7 @@
 
 -->
 <filesystem>
-    
+
     <folder name="Actions">
         <folder name="Window">
             <folder name="SelectDocumentNode">
@@ -35,13 +35,13 @@
             </file>
         </folder>
     </folder>
-    
+
     <folder name="Shortcuts">
         <file name="DS-9.shadow">
             <attr name="originalFile" stringvalue="Actions/Window/SelectDocumentNode/net-sf-efhnbm-SelectFromHere.instance"/>
         </file>
     </folder>
-    
+
     <folder name="Projects">
         <folder name="Actions">
             <file name="net.sf.efhnbm.ExploreFromHere.instance"/>
@@ -54,9 +54,9 @@
                     <file name="net.sf.efhnbm.ExploreFromHere.instance"/>
                 </folder>
             </folder>
-        </folder>    
+        </folder>
     </folder>
-    
+
     <folder name="OptionsDialog">
         <folder name="Advanced">
             <file name="EFHOptionCategory.instance">
@@ -64,5 +64,5 @@
             </file>
         </folder>
     </folder>
-    
+
 </filesystem>
