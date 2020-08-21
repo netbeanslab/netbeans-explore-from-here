@@ -19,10 +19,12 @@ public final class SelectFromHere extends CookieAction {
         setName();
     }
 
+    @Override
     protected void performAction(Node[] nodes) {
         helper.performAction(nodes, EFHHelper.SELECT);
     }
 
+    @Override
     protected int mode() {
         return CookieAction.MODE_EXACTLY_ONE;
     }
@@ -38,10 +40,12 @@ public final class SelectFromHere extends CookieAction {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     protected Class<?>[] cookieClasses() {
         return new Class<?>[]{
             EditorCookie.class,
@@ -57,6 +61,7 @@ public final class SelectFromHere extends CookieAction {
         putValue("noIconInMenu", Boolean.TRUE);
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }

@@ -47,6 +47,7 @@ public class EFHPanelController extends OptionsPanelController {
      * load settings
      *
      */
+    @Override
     public void update() {
         if (EFHSettings.PROP_OPTION_BUNDLE.equals(settings.getOption())) {
             panel.getBundleOption().setSelected(true);
@@ -88,6 +89,7 @@ public class EFHPanelController extends OptionsPanelController {
      * save settings
      *
      */
+    @Override
     public void applyChanges() {
         if (panel.getBundleOption().isSelected()) {
             settings.setOption(EFHSettings.PROP_OPTION_BUNDLE);
@@ -111,28 +113,35 @@ public class EFHPanelController extends OptionsPanelController {
      * does nothing
      *
      */
+    @Override
     public void cancel() {
     }
 
+    @Override
     public boolean isValid() {
         return true;
     }
 
+    @Override
     public boolean isChanged() {
         return changed;
     }
 
+    @Override
     public JComponent getComponent(Lookup masterLookup) {
         return panel;
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
 
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener l) {
     }
 
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener l) {
     }
 

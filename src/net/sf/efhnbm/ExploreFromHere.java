@@ -49,6 +49,7 @@ public class ExploreFromHere extends NodeAction {
      *
      * @return the help context (default)
      */
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
@@ -58,6 +59,7 @@ public class ExploreFromHere extends NodeAction {
      *
      * @return action's name
      */
+    @Override
     public java.lang.String getName() {
         return name;
     }
@@ -80,6 +82,7 @@ public class ExploreFromHere extends NodeAction {
      * @return if action is enabled
      */
     @SuppressWarnings("unchecked")
+    @Override
     protected boolean enable(org.openide.nodes.Node[] node) {
 
         if (node != null && node.length == 1) {
@@ -107,6 +110,7 @@ public class ExploreFromHere extends NodeAction {
      *
      * @param nodes the current node
      */
+    @Override
     protected void performAction(org.openide.nodes.Node[] nodes) {
         helper.performAction(nodes, EFHHelper.EXPLORE);
     }

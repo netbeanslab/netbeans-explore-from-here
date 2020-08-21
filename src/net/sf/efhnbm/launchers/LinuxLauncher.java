@@ -53,6 +53,7 @@ public class LinuxLauncher implements Launcher {
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
+    @Override
     public void explore(String path) throws Exception {
 
         if (commandPrefix == null) {
@@ -76,6 +77,7 @@ public class LinuxLauncher implements Launcher {
      * @param path the path to explore
      * @throws Exception if something goes wrong in the runtime
      */
+    @Override
     public void select(String path) throws Exception {
 
         if (!path.startsWith(File.separator)) {

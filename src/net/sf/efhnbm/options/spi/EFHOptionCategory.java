@@ -33,14 +33,17 @@ public class EFHOptionCategory extends AdvancedOption {
         super();
     }
 
+    @Override
     public String getDisplayName() {
         return EFHSettings.displayName();
     }
 
+    @Override
     public String getTooltip() {
         return EFHSettings.displayName();
     }
 
+    @Override
     public OptionsPanelController create() {
         return new EFHPanelController();
     }
