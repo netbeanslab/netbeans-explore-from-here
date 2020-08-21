@@ -13,10 +13,23 @@
  */
 package net.sf.efhnbm.utils;
 
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+
 public final class Utils {
 
     public static final String OS_NAME = System.getProperty("os.name"); // NOI18N
 
     private Utils() {
+    }
+
+    /**
+     * Show the error message.
+     *
+     * @param message the error message
+     */
+    public static void showErrorMessage(String message) {
+        NotifyDescriptor desc = new NotifyDescriptor.Message(message, NotifyDescriptor.ERROR_MESSAGE);
+        DialogDisplayer.getDefault().notify(desc);
     }
 }

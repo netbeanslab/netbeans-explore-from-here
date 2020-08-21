@@ -1,13 +1,12 @@
 package net.sf.efhnbm;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 import net.sf.efhnbm.utils.Utils;
 import org.openide.cookies.EditCookie;
 import org.openide.cookies.EditorCookie;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
+import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
 
 public final class SelectFromHere extends CookieAction {
@@ -15,17 +14,15 @@ public final class SelectFromHere extends CookieAction {
     private static final String ICON_PATH = "/net/sf/efhnbm/resources/Icon16.gif"; // NOI18N
     private static final long serialVersionUID = 1791856667036029663L;
 
-    EFHHelper helper;
-    String name;
+    private final EFHHelper helper;
 
     public SelectFromHere() {
         helper = new EFHHelper();
-        setName();
     }
 
     @Override
     protected void performAction(Node[] nodes) {
-        helper.performAction(nodes, EFHHelper.SELECT);
+        helper.performAction(nodes, EFHHelper.ActionKind.SELECT);
     }
 
     @Override
@@ -33,20 +30,13 @@ public final class SelectFromHere extends CookieAction {
         return CookieAction.MODE_EXACTLY_ONE;
     }
 
-    /**
-     * set the name of the action
-     */
-    protected void setName() {
-        try {
-            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("select_from_here") + Utils.OS_NAME;
-        } catch (MissingResourceException mre) {
-            name = "&Select with OS";
-        }
-    }
-
     @Override
+    @NbBundle.Messages({
+        "# {0} - os name",
+        "SelectFromHere.name=&Select in {0}",
+    })
     public String getName() {
-        return name;
+        return Bundle.SelectFromHere_name(Utils.OS_NAME);
     }
 
     @Override

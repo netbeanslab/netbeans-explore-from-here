@@ -16,16 +16,14 @@
 package net.sf.efhnbm;
 
 import java.io.File;
-import java.util.ResourceBundle;
 import net.sf.efhnbm.utils.Utils;
 import org.netbeans.api.project.Project;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.Lookup.Template;
+import org.openide.util.NbBundle;
 
 /**
  *
@@ -33,11 +31,13 @@ import org.openide.util.Lookup.Template;
  */
 public class EFHHelper {
 
-    static int EXPLORE = 0;
-    static int SELECT = 1;
+    public enum ActionKind {
+        EXPLORE,
+        SELECT,
+    }
 
     /**
-     * Creates a new instance of EFHHelper
+     * Creates a new instance of EFHHelper.
      */
     public EFHHelper() {
     }
@@ -46,22 +46,21 @@ public class EFHHelper {
         return LaunchersFactory.getInstance().getLauncher();
     }
 
-    /*
-     * perform actions: explore or select
-     *
+    /**
+     * perform actions: explore or select.
      */
+    @NbBundle.Messages({
+        "# {0} - os name",
+        "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}",
+    })
     @SuppressWarnings("unchecked")
-    void performAction(Node[] node, int what) {
+    void performAction(Node[] node, ActionKind kind) {
         Node currentNode = node[0];
-
         FileObject fileObject = null;
-
         Project projects[] = currentNode.getLookup().lookup(new Template<>(Project.class)).allInstances().toArray(new Project[0]);
-
         if (projects != null && projects.length == 1 && projects[0] != null) {
             fileObject = projects[0].getProjectDirectory();
         }
-
         if (fileObject == null) {
             DataObject dataObject = currentNode.getCookie(DataObject.class);
             if (dataObject != null) {
@@ -71,24 +70,18 @@ public class EFHHelper {
         try {
             Launcher launcher = getLauncher();
             if (launcher != null && fileObject != null) {
-
                 //building a file allow to get the absolute path with the correct separator (/ or \)
                 File file = FileUtil.toFile(fileObject);
-
-                if (what == EXPLORE) {
+                if (kind == ActionKind.EXPLORE) {
                     launcher.explore(file.getAbsolutePath());
-                } else if (what == SELECT) {
+                } else if (kind == ActionKind.SELECT) {
                     launcher.select(file.getAbsolutePath());
                 }
-
             } else {
-                NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + Utils.OS_NAME, NotifyDescriptor.ERROR_MESSAGE);
-                DialogDisplayer.getDefault().notify(desc);
+                Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
             }
         } catch (Exception e) {
-            NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + Utils.OS_NAME, NotifyDescriptor.ERROR_MESSAGE);
-            DialogDisplayer.getDefault().notify(desc);
+            Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
         }
     }
-
 }

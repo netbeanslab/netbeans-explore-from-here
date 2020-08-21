@@ -15,8 +15,6 @@
  */
 package net.sf.efhnbm;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 import net.sf.efhnbm.utils.Utils;
 import org.netbeans.api.project.Project;
 import org.openide.filesystems.FileObject;
@@ -25,6 +23,7 @@ import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.NodeAction;
 import org.openide.util.Lookup.Template;
+import org.openide.util.NbBundle;
 
 /**
  * module action
@@ -36,15 +35,13 @@ public class ExploreFromHere extends NodeAction {
 
     private static final long serialVersionUID = 3616428729074090297L;
 
-    EFHHelper helper;
-    String name;
+    private final EFHHelper helper;
 
     /**
-     * Creates a new instance of ExploreFromHere
+     * Creates a new instance of ExploreFromHere.
      */
     public ExploreFromHere() {
         helper = new EFHHelper();
-        setName();
     }
 
     /**
@@ -58,24 +55,17 @@ public class ExploreFromHere extends NodeAction {
     }
 
     /**
-     * get the name of the action
+     * get the name of the action.
      *
      * @return action's name
      */
     @Override
+    @NbBundle.Messages({
+        "# {0} - os name",
+        "ExploreFromHere.name=&Explore with {0}",
+    })
     public java.lang.String getName() {
-        return name;
-    }
-
-    /**
-     * set the name of the action
-     */
-    private void setName() {
-        try {
-            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here") + Utils.OS_NAME;
-        } catch (MissingResourceException mre) {
-            name = "&Explore with OS";
-        }
+        return Bundle.ExploreFromHere_name(Utils.OS_NAME);
     }
 
     /**
@@ -87,12 +77,9 @@ public class ExploreFromHere extends NodeAction {
     @SuppressWarnings("unchecked")
     @Override
     protected boolean enable(Node[] node) {
-
         if (node != null && node.length == 1) {
             Node currentNode = node[0];
-
             Project projects[] = currentNode.getLookup().lookup(new Template<>(Project.class)).allInstances().toArray(new Project[0]);
-
             if (projects != null && projects.length == 1 && projects[0] != null) {
                 return true;
             }
@@ -102,10 +89,8 @@ public class ExploreFromHere extends NodeAction {
                 FileObject fileObj = dataObject.getPrimaryFile();
                 return fileObj.isValid() && !fileObj.isVirtual();
             }
-
         }
         return false;
-
     }
 
     /**
@@ -115,6 +100,6 @@ public class ExploreFromHere extends NodeAction {
      */
     @Override
     protected void performAction(Node[] nodes) {
-        helper.performAction(nodes, EFHHelper.EXPLORE);
+        helper.performAction(nodes, EFHHelper.ActionKind.EXPLORE);
     }
 }
