@@ -85,7 +85,7 @@ public class ExploreFromHere extends NodeAction {
         if (node != null && node.length == 1) {
             Node currentNode = node[0];
 
-            Project projects[] = (Project[]) currentNode.getLookup().lookup(new Template(Project.class)).allInstances().toArray(new Project[0]);
+            Project projects[] = currentNode.getLookup().lookup(new Template<>(Project.class)).allInstances().toArray(new Project[0]);
 
             if (projects != null && projects.length == 1 && projects[0] != null) {
                 return true;

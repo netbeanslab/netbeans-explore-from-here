@@ -42,8 +42,8 @@ public final class SelectFromHere extends CookieAction {
         return name;
     }
 
-    protected Class[] cookieClasses() {
-        return new Class[]{
+    protected Class<?>[] cookieClasses() {
+        return new Class<?>[]{
             EditorCookie.class,
             EditCookie.class,
             DataObject.class

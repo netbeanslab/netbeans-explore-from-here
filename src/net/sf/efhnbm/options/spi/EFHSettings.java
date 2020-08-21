@@ -18,8 +18,6 @@ package net.sf.efhnbm.options.spi;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import net.sf.efhnbm.ExploreFromHere;
@@ -27,6 +25,7 @@ import net.sf.efhnbm.LaunchersFactory;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.util.HelpCtx;
+import org.openide.util.NbBundle;
 import org.openide.util.NbPreferences;
 import org.openide.util.SharedClassObject;
 
@@ -60,11 +59,7 @@ public class EFHSettings extends SharedClassObject {
      *
      */
     public static String displayName() {
-        try {
-            return ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here_settings");
-        } catch (MissingResourceException mre) {
-            return "Explore from here settings";
-        }
+        return NbBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here_settings"); // NOI18N
     }
 
     private void putPreference(String key, String value) throws BackingStoreException {

@@ -61,7 +61,7 @@ public class EFHHelper {
 
         FileObject fileObject = null;
 
-        Project projects[] = (Project[]) currentNode.getLookup().lookup(new Template(Project.class)).allInstances().toArray(new Project[0]);
+        Project projects[] = currentNode.getLookup().lookup(new Template<>(Project.class)).allInstances().toArray(new Project[0]);
 
         if (projects != null && projects.length == 1 && projects[0] != null) {
             fileObject = projects[0].getProjectDirectory();
