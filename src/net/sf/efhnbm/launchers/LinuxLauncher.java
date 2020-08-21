@@ -58,9 +58,8 @@ public class LinuxLauncher implements Launcher {
         if (!path.startsWith(File.separator)) {
             path = File.separator + path;
         }
-        Runtime r = Runtime.getRuntime();
-        Process p = r.exec(commandPrefix + path);
-        p.waitFor();
+        ProcessBuilder pb = new ProcessBuilder((commandPrefix + path).split(" ")); // NOI18N
+        pb.start();
     }
 
     /**

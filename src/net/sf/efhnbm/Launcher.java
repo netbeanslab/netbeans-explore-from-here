@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -25,7 +25,7 @@ package net.sf.efhnbm;
 public interface Launcher {
 
     /**
-     * launch a runtime command for exploring a path
+     * launch a runtime command for exploring a path.
      *
      * @param path the path to work on
      * @throws Exception if something goes wrong in the runtime
@@ -33,7 +33,7 @@ public interface Launcher {
     public void explore(String path) throws Exception;
 
     /**
-     * launch a runtime command for selecting a file
+     * launch a runtime command for selecting a file.
      *
      * @param path the path to work on
      * @throws Exception if something goes wrong in the runtime

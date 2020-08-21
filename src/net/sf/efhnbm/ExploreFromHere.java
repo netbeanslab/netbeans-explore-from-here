@@ -102,4 +102,9 @@ public class ExploreFromHere extends NodeAction {
     protected void performAction(Node[] nodes) {
         helper.performAction(nodes, EFHHelper.ActionKind.EXPLORE);
     }
-}
+
+    @Override
+    protected boolean asynchronous() {
+        return false;
+    }
+  }

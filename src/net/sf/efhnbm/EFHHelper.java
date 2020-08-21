@@ -53,10 +53,6 @@ public class EFHHelper {
     /**
      * perform actions: explore or select.
      */
-    @NbBundle.Messages({
-        "# {0} - os name",
-        "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}"
-    })
     @SuppressWarnings("unchecked")
     void performAction(Node[] node, ActionKind kind) {
         Node currentNode = node[0];
@@ -93,6 +89,10 @@ public class EFHHelper {
         });
     }
 
+    @NbBundle.Messages({
+        "# {0} - os name",
+        "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}"
+    })
     private void showError() {
         if (!SwingUtilities.isEventDispatchThread()) {
             SwingUtilities.invokeLater(() -> Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME)));

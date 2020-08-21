@@ -15,31 +15,50 @@
  */
 package net.sf.efhnbm;
 
-import java.util.Enumeration;
-import java.util.ResourceBundle;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import net.sf.efhnbm.launchers.CommandLauncher;
+import net.sf.efhnbm.launchers.LinuxLauncher;
+import net.sf.efhnbm.launchers.Win32Launcher;
 import net.sf.efhnbm.options.spi.EFHSettings;
 import net.sf.efhnbm.utils.Utils;
 import org.openide.util.SharedClassObject;
 
 /**
- * launchers factory
+ * launchers factory.
  *
  * @author alessandro negrin
  * @version $Id$
  */
 public class LaunchersFactory {
 
+    enum LauncherType {
+        LINUX,
+        WINDOWS
+    }
+
+    private static final String WINDOWS_PATTERN_REGEX = "Windows\\ .*"; // NOI18N
+    private static final String LINUX_PATTERN_REGEX = "Linux.*"; // NOI18N
+    private static final Pattern WINDOWS_PATTERN = Pattern.compile(WINDOWS_PATTERN_REGEX);
+    private static final Pattern LINUX_PATTERN = Pattern.compile(LINUX_PATTERN_REGEX);
+    private static final Map<Pattern, LauncherType> OS_MAP = new HashMap<>();
     private static final LaunchersFactory INSTANCE = new LaunchersFactory();
+
     private Launcher launcher = null;
+
+    static {
+        OS_MAP.put(LINUX_PATTERN, LauncherType.LINUX);
+        OS_MAP.put(WINDOWS_PATTERN, LauncherType.WINDOWS);
+    }
 
     /* Creates a new instance of LaunchersFactory */
     private LaunchersFactory() {
     }
 
     /**
-     * get factory singleton instance
+     * get factory singleton instance.
      *
      * @return a factory
      */
@@ -48,7 +67,7 @@ public class LaunchersFactory {
     }
 
     /**
-     * reset the factory (config has been changed)
+     * reset the factory (config has been changed).
      *
      */
     public synchronized void reset() {
@@ -56,26 +75,21 @@ public class LaunchersFactory {
     }
 
     /**
-     * get the launcher to start exploring
+     * get the launcher to start exploring.
      *
      * @return the launcher
      */
     public synchronized Launcher getLauncher() {
         if (launcher == null) {
             EFHSettings settings = SharedClassObject.findObject(EFHSettings.class, true);
-
             String todo = settings.getOption();
-
             try {
                 if (EFHSettings.PROP_OPTION_BUNDLE.equals(todo)) {
-                    Enumeration<String> keys = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getKeys();
-                    boolean found = false;
-                    while (!found && keys.hasMoreElements()) {
-                        String key = keys.nextElement();
-                        if (Pattern.matches(key, Utils.OS_NAME)) {
-                            String className = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getString(key);
-                            launcher = (Launcher) Class.forName(className).newInstance();
-                            found = true;
+                    for (Map.Entry<Pattern, LauncherType> entry : OS_MAP.entrySet()) {
+                        Matcher matcher = entry.getKey().matcher(Utils.OS_NAME);
+                        if (matcher.matches()) {
+                            launcher = create(entry.getValue());
+                            break;
                         }
                     }
                 } else if (EFHSettings.PROP_OPTION_CLASS.equals(todo)) {
@@ -89,5 +103,16 @@ public class LaunchersFactory {
             }
         }
         return launcher;
+    }
+
+    private static Launcher create(LauncherType type) {
+        switch (type) {
+            case LINUX:
+                return new LinuxLauncher();
+            case WINDOWS:
+                return new Win32Launcher();
+            default:
+                throw new AssertionError();
+        }
     }
 }

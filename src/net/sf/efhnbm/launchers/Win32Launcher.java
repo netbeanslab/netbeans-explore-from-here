@@ -39,9 +39,8 @@ public class Win32Launcher implements Launcher {
      */
     @Override
     public void explore(String path) throws Exception {
-        Runtime r = Runtime.getRuntime();
-        Process p = r.exec("rundll32 url.dll,FileProtocolHandler " + path); // NOI18N
-        p.waitFor();
+        ProcessBuilder pb = new ProcessBuilder(("rundll32 url.dll,FileProtocolHandler " + path).split(" ")); // NOI18N
+        pb.start();
     }
 
     /**
@@ -52,8 +51,7 @@ public class Win32Launcher implements Launcher {
      */
     @Override
     public void select(String path) throws Exception {
-        Runtime r = Runtime.getRuntime();
-        Process p = r.exec("explorer /e,/select," + path); // NOI18N
-        p.waitFor();
+        ProcessBuilder pb = new ProcessBuilder(("explorer /e,/select," + path).split(" ")); // NOI18N
+        pb.start();
     }
 }
