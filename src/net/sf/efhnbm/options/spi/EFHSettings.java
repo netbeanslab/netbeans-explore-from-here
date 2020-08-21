@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -22,10 +22,8 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import net.sf.efhnbm.ExploreFromHere;
 import net.sf.efhnbm.LaunchersFactory;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
+import net.sf.efhnbm.utils.Utils;
 import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
 import org.openide.util.NbPreferences;
 import org.openide.util.SharedClassObject;
 
@@ -37,29 +35,19 @@ import org.openide.util.SharedClassObject;
  */
 public class EFHSettings extends SharedClassObject {
 
-    public static final String PROP_OPTION = "option";
-    public static final String PROP_OPTION_BUNDLE = "bundle";
-    public static final String PROP_OPTION_CLASS = "class";
-    public static final String PROP_OPTION_COMMAND = "command";
-    public static final String PROP_LAUNCHER_CLASS = "launcher_class";
-    public static final String PROP_COMMAND_EXPLORE = "command";//keeping "command" for backward comp.
-    public static final String PROP_COMMAND_SELECT = "command_select";
+    public static final String PROP_OPTION = "option"; // NOI18N
+    public static final String PROP_OPTION_BUNDLE = "bundle"; // NOI18N
+    public static final String PROP_OPTION_CLASS = "class"; // NOI18N
+    public static final String PROP_OPTION_COMMAND = "command"; // NOI18N
+    public static final String PROP_LAUNCHER_CLASS = "launcher_class"; // NOI18N
+    public static final String PROP_COMMAND_EXPLORE = "command";// NOI18N keeping "command" for backward comp.
+    public static final String PROP_COMMAND_SELECT = "command_select"; // NOI18N
     private static final long serialVersionUID = 588225648352926127L;
 
     /**
-     * Creates a new instance of EFHSettings
+     * Creates a new instance of EFHSettings.
      */
     public EFHSettings() {
-    }
-
-    /**
-     * returns the display name
-     *
-     * @return the name to display
-     *
-     */
-    public static String displayName() {
-        return NbBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here_settings"); // NOI18N
     }
 
     private void putPreference(String key, String value) throws BackingStoreException {
@@ -82,8 +70,7 @@ public class EFHSettings extends SharedClassObject {
     }
 
     /**
-     * init props
-     *
+     * init props.
      */
     @Override
     protected void initialize() {
@@ -96,9 +83,8 @@ public class EFHSettings extends SharedClassObject {
         putProperty(PROP_COMMAND_SELECT, getPreference(PROP_COMMAND_SELECT, "explorer /e,/select,{0}"), true);
     }
 
-    /*
-     * save the state
-     * 
+    /**
+     * save the state.
      */
     private void save() {
         try {
@@ -107,13 +93,12 @@ public class EFHSettings extends SharedClassObject {
             putPreference(PROP_OPTION, getOption());
             putPreference(PROP_COMMAND_SELECT, getCommandSelect());
         } catch (BackingStoreException bse) {
-            NotifyDescriptor desc = new NotifyDescriptor.Message("can't save", NotifyDescriptor.ERROR_MESSAGE);
-            DialogDisplayer.getDefault().notify(desc);
+            Utils.showErrorMessage("can't save"); // NOI18N
         }
     }
 
     /**
-     * serialize options
+     * serialize options.
      *
      * @param out
      * @throws java.io.IOException
@@ -124,7 +109,7 @@ public class EFHSettings extends SharedClassObject {
     }
 
     /**
-     * deserialize options
+     * deserialize options.
      *
      * @param in
      * @throws java.io.IOException
@@ -136,7 +121,7 @@ public class EFHSettings extends SharedClassObject {
     }
 
     /**
-     * get help context for action
+     * get help context for action.
      *
      * @return the help context (default)
      */
@@ -177,7 +162,7 @@ public class EFHSettings extends SharedClassObject {
     }
 
     /**
-     * is a property has changed launchers factory must be reset
+     * is a property has changed launchers factory must be reset.
      *
      * @param name
      * @param oldValue
@@ -191,8 +176,7 @@ public class EFHSettings extends SharedClassObject {
     }
 
     /**
-     * fake propertychange to fire save
-     *
+     * fake propertychange to fire save.
      */
     public void firePropertiesHaveBeenChanged() {
         firePropertyChange(PROP_OPTION, null, getOption());

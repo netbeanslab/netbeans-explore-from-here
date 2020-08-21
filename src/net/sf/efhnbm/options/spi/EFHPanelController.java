@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -77,16 +77,14 @@ public class EFHPanelController extends OptionsPanelController {
             panel.getBrowseCommandButtonSelect().setEnabled(true);
 
         }
-
         panel.getClassTextField().setText(settings.getLauncherClass());
         panel.getCommandTextFieldExplore().setText(settings.getCommandExplore());
         panel.getCommandTextFieldSelect().setText(settings.getCommandSelect());
-
         changed = false;
     }
 
     /**
-     * save settings
+     * save settings.
      *
      */
     @Override
@@ -98,21 +96,13 @@ public class EFHPanelController extends OptionsPanelController {
         } else if (panel.getCommandOption().isSelected()) {
             settings.setOption(EFHSettings.PROP_OPTION_COMMAND);
         }
-
         settings.setLauncherClass(panel.getClassTextField().getText());
         settings.setCommandExplore(panel.getCommandTextFieldExplore().getText());
         settings.setCommandSelect(panel.getCommandTextFieldSelect().getText());
-
         settings.firePropertiesHaveBeenChanged();
-
         changed = true;
-
     }
 
-    /**
-     * does nothing
-     *
-     */
     @Override
     public void cancel() {
     }

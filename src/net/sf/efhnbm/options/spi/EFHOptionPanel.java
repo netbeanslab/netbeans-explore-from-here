@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -41,7 +41,7 @@ public class EFHOptionPanel extends JPanel {
     private static final long serialVersionUID = 9018890829648160858L;
 
     /**
-     * Creates new form EFHOptionPanel
+     * Creates new form EFHOptionPanel.
      */
     public EFHOptionPanel() {
         initComponents();
@@ -187,36 +187,27 @@ public class EFHOptionPanel extends JPanel {
     }//GEN-LAST:event_onBrowseForCommandExplore
 
     private void onSelectCommand(ActionEvent evt) {//GEN-FIRST:event_onSelectCommand
-
         classTextField.setEnabled(false);
-
         commandTextFieldExplore.setEnabled(true);
         browseCommandButtonExplore.setEnabled(true);
         commandTextFieldSelect.setEnabled(true);
         browseCommandButtonSelect.setEnabled(true);
-
     }//GEN-LAST:event_onSelectCommand
 
     private void onSelectClass(ActionEvent evt) {//GEN-FIRST:event_onSelectClass
-
         classTextField.setEnabled(true);
-
         commandTextFieldExplore.setEnabled(false);
         browseCommandButtonExplore.setEnabled(false);
         commandTextFieldSelect.setEnabled(false);
         browseCommandButtonSelect.setEnabled(false);
-
     }//GEN-LAST:event_onSelectClass
 
     private void onSelectBundle(ActionEvent evt) {//GEN-FIRST:event_onSelectBundle
-
         classTextField.setEnabled(false);
-
         commandTextFieldExplore.setEnabled(false);
         browseCommandButtonExplore.setEnabled(false);
         commandTextFieldSelect.setEnabled(false);
         browseCommandButtonSelect.setEnabled(false);
-
     }//GEN-LAST:event_onSelectBundle
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
