@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import net.sf.efhnbm.launchers.CommandLauncher;
 import net.sf.efhnbm.options.spi.EFHSettings;
+import net.sf.efhnbm.utils.Utils;
 import org.openide.util.SharedClassObject;
 
 /**
@@ -30,8 +31,7 @@ import org.openide.util.SharedClassObject;
  */
 public class LaunchersFactory {
 
-    private final String osName = System.getProperty("os.name");
-    private static LaunchersFactory instance;
+    private static final LaunchersFactory INSTANCE = new LaunchersFactory();
     private Launcher launcher = null;
 
     /* Creates a new instance of LaunchersFactory */
@@ -43,12 +43,8 @@ public class LaunchersFactory {
      *
      * @return a factory
      */
-    public static synchronized LaunchersFactory getInstance() {
-        if (instance == null) {
-            instance = new LaunchersFactory();
-        }
-
-        return instance;
+    public static LaunchersFactory getInstance() {
+        return INSTANCE;
     }
 
     /**
@@ -71,20 +67,17 @@ public class LaunchersFactory {
             String todo = settings.getOption();
 
             try {
-
                 if (EFHSettings.PROP_OPTION_BUNDLE.equals(todo)) {
-
                     Enumeration<String> keys = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getKeys();
                     boolean found = false;
                     while (!found && keys.hasMoreElements()) {
                         String key = keys.nextElement();
-                        if (Pattern.matches(key, osName)) {
+                        if (Pattern.matches(key, Utils.OS_NAME)) {
                             String className = ResourceBundle.getBundle("net/sf/efhnbm/launchers").getString(key);
                             launcher = (Launcher) Class.forName(className).newInstance();
                             found = true;
                         }
                     }
-
                 } else if (EFHSettings.PROP_OPTION_CLASS.equals(todo)) {
                     String className = settings.getLauncherClass();
                     launcher = (Launcher) Class.forName(className).newInstance();
@@ -96,6 +89,5 @@ public class LaunchersFactory {
             }
         }
         return launcher;
-
     }
 }

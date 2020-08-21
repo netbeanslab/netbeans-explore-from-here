@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -17,6 +17,7 @@ package net.sf.efhnbm;
 
 import java.io.File;
 import java.util.ResourceBundle;
+import net.sf.efhnbm.utils.Utils;
 import org.netbeans.api.project.Project;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
@@ -32,8 +33,6 @@ import org.openide.util.Lookup.Template;
  */
 public class EFHHelper {
 
-    private final String osName = System.getProperty("os.name");
-
     static int EXPLORE = 0;
     static int SELECT = 1;
 
@@ -45,10 +44,6 @@ public class EFHHelper {
 
     private Launcher getLauncher() {
         return LaunchersFactory.getInstance().getLauncher();
-    }
-
-    public String getOsName() {
-        return osName;
     }
 
     /*
@@ -87,11 +82,11 @@ public class EFHHelper {
                 }
 
             } else {
-                NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
+                NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + Utils.OS_NAME, NotifyDescriptor.ERROR_MESSAGE);
                 DialogDisplayer.getDefault().notify(desc);
             }
         } catch (Exception e) {
-            NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + getOsName(), NotifyDescriptor.ERROR_MESSAGE);
+            NotifyDescriptor desc = new NotifyDescriptor.Message(ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("error_msg") + Utils.OS_NAME, NotifyDescriptor.ERROR_MESSAGE);
             DialogDisplayer.getDefault().notify(desc);
         }
     }

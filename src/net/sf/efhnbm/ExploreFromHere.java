@@ -1,4 +1,4 @@
-/**
+/*
  *                          Sun Public License Notice
  *
  * The contents of this file are subject to the Sun Public License Version
@@ -17,6 +17,7 @@ package net.sf.efhnbm;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import net.sf.efhnbm.utils.Utils;
 import org.netbeans.api.project.Project;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObject;
@@ -71,7 +72,7 @@ public class ExploreFromHere extends NodeAction {
      */
     private void setName() {
         try {
-            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here") + helper.getOsName();
+            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("explore_from_here") + Utils.OS_NAME;
         } catch (MissingResourceException mre) {
             name = "&Explore with OS";
         }

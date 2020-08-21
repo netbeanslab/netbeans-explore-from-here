@@ -2,6 +2,7 @@ package net.sf.efhnbm;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import net.sf.efhnbm.utils.Utils;
 import org.openide.cookies.EditCookie;
 import org.openide.cookies.EditorCookie;
 import org.openide.loaders.DataObject;
@@ -11,6 +12,7 @@ import org.openide.util.actions.CookieAction;
 
 public final class SelectFromHere extends CookieAction {
 
+    private static final String ICON_PATH = "/net/sf/efhnbm/resources/Icon16.gif"; // NOI18N
     private static final long serialVersionUID = 1791856667036029663L;
 
     EFHHelper helper;
@@ -36,7 +38,7 @@ public final class SelectFromHere extends CookieAction {
      */
     protected void setName() {
         try {
-            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("select_from_here") + helper.getOsName();
+            name = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n").getString("select_from_here") + Utils.OS_NAME;
         } catch (MissingResourceException mre) {
             name = "&Select with OS";
         }
@@ -75,7 +77,7 @@ public final class SelectFromHere extends CookieAction {
 
     @Override
     protected String iconResource() {
-        return "/net/sf/efhnbm/resources/Icon16.gif";
+        return ICON_PATH;
     }
 
 }
