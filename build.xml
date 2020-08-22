@@ -3,37 +3,34 @@
 <!-- for some information on what you could do (e.g. targets to override). -->
 <!-- If you delete this file and reopen the project it will be recreated. -->
 <project name="net.sf.efhnbm" default="all" basedir=".">
-    <property name="keystore" value="keystore"/>
-    <property name="storepass" value="password"/>
-    <property name="nbm_alias" value="efhnbm"/>
     <description>Builds, tests, and runs the project net.sf.efhnbm.</description>
     <import file="nbproject/build-impl.xml"/>
     <target name="all" depends="nbm,postprocessing"/>
-    
+
     <target name="postprocessing">
         <property name="auc_file" value="./efhnbm_autoupdate_center.xml"></property>
         <property name="temp_file" value="./temp/module.properties"></property>
-        
+
         <unjar src="build/net-sf-efhnbm.nbm" dest="temp"/>
 
         <xslt basedir="." in="temp/Info/info.xml" out="${auc_file}" style="create_autoupdate.xsl" />
-        
+
         <replace file='${auc_file}' token='"module_updates"' value='"http://www.netbeans.org/dtds/autoupdate-catalog-2_3.dtd"'/>
         <tstamp>
             <format property="DDMMYYYY" pattern="dd/MM/yyyy"/>
         </tstamp>
         <replace file='${auc_file}' token='$DDMMYYYY' value='${DDMMYYYY}'/>
-        
+
 
         <xslt basedir="." in="build/cluster/config/Modules/net-sf-efhnbm.xml" out="${temp_file}" style="version_to_props.xsl" />
-        
+
         <property file="${temp_file}"/>
         <replace file='${auc_file}' token='distribution=""' value='distribution="http://efhnbm.sourceforge.net/net-sf-efhnbm.${specversion}.nbm"'/>
         <copy file="build/net-sf-efhnbm.nbm" tofile="releases/net-sf-efhnbm.${specversion}.nbm" overwrite="true"/>
-        
+
         <length file="build/net-sf-efhnbm.nbm" property="nbm_size"/>
         <replace file='${auc_file}' token='downloadsize="0"' value='downloadsize="${nbm_size}"'/>
-        
+
         <delete dir="temp" />
     </target>
 </project>
