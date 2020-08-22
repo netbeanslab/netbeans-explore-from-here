@@ -25,6 +25,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -120,7 +121,8 @@ public final class EFHOptionPanel extends JPanel {
         classOption = new JRadioButton();
         commandOption = new JRadioButton();
         classTextField = new JTextField();
-        commandsPanel = new JPanel();
+        commandExploreLabel = new JLabel();
+        commandSelectLabel = new JLabel();
         commandTextFieldExplore = new JTextField();
         browseCommandButtonSelect = new JButton();
         commandTextFieldSelect = new JTextField();
@@ -159,7 +161,9 @@ public final class EFHOptionPanel extends JPanel {
             }
         });
 
-        commandsPanel.setBackground(null);
+        commandExploreLabel.setText("Explore:");
+
+        commandSelectLabel.setText("Select:");
 
         browseCommandButtonSelect.setText(bundle.getString("browse_command")); // NOI18N
         browseCommandButtonSelect.addMouseListener(new MouseAdapter() {
@@ -175,58 +179,54 @@ public final class EFHOptionPanel extends JPanel {
             }
         });
 
-        GroupLayout commandsPanelLayout = new GroupLayout(commandsPanel);
-        commandsPanel.setLayout(commandsPanelLayout);
-        commandsPanelLayout.setHorizontalGroup(commandsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(commandsPanelLayout.createSequentialGroup()
-                .addGroup(commandsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(commandTextFieldExplore, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                    .addComponent(commandTextFieldSelect, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(commandsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(browseCommandButtonExplore, GroupLayout.Alignment.TRAILING)
-                    .addComponent(browseCommandButtonSelect, GroupLayout.Alignment.TRAILING)))
-        );
-        commandsPanelLayout.setVerticalGroup(commandsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(commandsPanelLayout.createSequentialGroup()
-                .addGroup(commandsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(browseCommandButtonExplore)
-                    .addComponent(commandTextFieldExplore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(commandsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(browseCommandButtonSelect)
-                    .addComponent(commandTextFieldSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        );
-
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(bundleOption)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(classOption)
-                            .addComponent(commandOption))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(commandsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(classTextField, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(commandSelectLabel)
+                            .addComponent(commandExploreLabel)))
+                    .addComponent(classOption))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(classTextField)
+                    .addComponent(commandTextFieldExplore, GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                    .addComponent(commandTextFieldSelect))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(browseCommandButtonExplore, GroupLayout.Alignment.TRAILING)
+                    .addComponent(browseCommandButtonSelect, GroupLayout.Alignment.TRAILING)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(commandOption)
+                    .addComponent(bundleOption))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bundleOption)
-                .addGap(16, 16, 16)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(classOption)
                     .addComponent(classTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(commandOption)
-                    .addComponent(commandsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(commandOption)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(browseCommandButtonExplore)
+                    .addComponent(commandTextFieldExplore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(commandExploreLabel))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(browseCommandButtonSelect)
+                    .addComponent(commandTextFieldSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(commandSelectLabel))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -276,10 +276,11 @@ public final class EFHOptionPanel extends JPanel {
     private JRadioButton classOption;
     private JTextField classTextField;
     private JFileChooser commandChooser;
+    private JLabel commandExploreLabel;
     private JRadioButton commandOption;
+    private JLabel commandSelectLabel;
     private JTextField commandTextFieldExplore;
     private JTextField commandTextFieldSelect;
-    private JPanel commandsPanel;
     private ButtonGroup optionGroup;
     // End of variables declaration//GEN-END:variables
 
