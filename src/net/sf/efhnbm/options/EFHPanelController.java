@@ -13,7 +13,7 @@
  * Contributor(s): alessandro negrin.
  *
  */
-package net.sf.efhnbm.options.spi;
+package net.sf.efhnbm.options;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

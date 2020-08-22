@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import net.sf.efhnbm.launchers.CommandLauncher;
 import net.sf.efhnbm.launchers.LinuxLauncher;
 import net.sf.efhnbm.launchers.Win32Launcher;
-import net.sf.efhnbm.options.spi.EFHSettings;
+import net.sf.efhnbm.options.EFHSettings;
 import net.sf.efhnbm.utils.Utils;
 import org.openide.util.SharedClassObject;
 

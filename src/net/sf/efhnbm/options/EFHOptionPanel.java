@@ -13,7 +13,7 @@
  * Contributor(s): alessandro negrin.
  *
  */
-package net.sf.efhnbm.options.spi;
+package net.sf.efhnbm.options;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -133,7 +133,7 @@ public final class EFHOptionPanel extends JPanel {
 
         bundleOption.setBackground(null);
         optionGroup.add(bundleOption);
-        ResourceBundle bundle = ResourceBundle.getBundle("net/sf/efhnbm/options/spi/Bundle"); // NOI18N
+        ResourceBundle bundle = ResourceBundle.getBundle("net/sf/efhnbm/options/Bundle"); // NOI18N
         bundleOption.setText(bundle.getString("EFHOptionPanel.bundleOption.text")); // NOI18N
         bundleOption.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         bundleOption.addActionListener(new ActionListener() {
