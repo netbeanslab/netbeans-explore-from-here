@@ -17,6 +17,8 @@ package net.sf.efhnbm;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import net.sf.efhnbm.launchers.CommandLauncher;
@@ -45,6 +47,7 @@ public class LaunchersFactory {
     private static final Pattern LINUX_PATTERN = Pattern.compile(LINUX_PATTERN_REGEX);
     private static final Map<Pattern, LauncherType> OS_MAP = new HashMap<>();
     private static final LaunchersFactory INSTANCE = new LaunchersFactory();
+    private static final Logger LOGGER = Logger.getLogger(LaunchersFactory.class.getName());
 
     private Launcher launcher = null;
 
@@ -98,8 +101,8 @@ public class LaunchersFactory {
                 } else if (EFHSettings.PROP_OPTION_COMMAND.equals(todo)) {
                     launcher = new CommandLauncher(settings.getCommandExplore(), settings.getCommandSelect());
                 }
-            } catch (Exception e) {
-                //don't care
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                LOGGER.log(Level.INFO, e.getMessage());
             }
         }
         return launcher;
