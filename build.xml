@@ -5,13 +5,13 @@
 <project name="netbeanslabo.explore.from.here" default="all" basedir=".">
     <description>Builds, tests, and runs the project netbeanslabo.explore.from.here.</description>
     <import file="nbproject/build-impl.xml"/>
-    <target name="all" depends="nbm,postprocessing"/>
+    <target name="all" depends="-nbm-spec-version,postprocessing"/>
 
     <target name="postprocessing">
         <property name="auc_file" value="./efhnbm_autoupdate_center.xml"></property>
         <property name="temp_file" value="./temp/module.properties"></property>
 
-        <unjar src="build/net-sf-efhnbm.nbm" dest="temp"/>
+        <unjar src="build/${code.name.base.dashes}.nbm" dest="temp"/>
 
         <xslt basedir="." in="temp/Info/info.xml" out="${auc_file}" style="create_autoupdate.xsl" />
 
@@ -22,15 +22,32 @@
         <replace file='${auc_file}' token='$DDMMYYYY' value='${DDMMYYYY}'/>
 
 
-        <xslt basedir="." in="build/cluster/config/Modules/net-sf-efhnbm.xml" out="${temp_file}" style="version_to_props.xsl" />
+        <xslt basedir="." in="build/cluster/config/Modules/${code.name.base.dashes}.xml" out="${temp_file}" style="version_to_props.xsl" />
 
         <property file="${temp_file}"/>
-        <replace file='${auc_file}' token='distribution=""' value='distribution="http://efhnbm.sourceforge.net/net-sf-efhnbm.${specversion}.nbm"'/>
-        <copy file="build/net-sf-efhnbm.nbm" tofile="releases/net-sf-efhnbm.${specversion}.nbm" overwrite="true"/>
+        <property name="download.url" value="https://github.com/netbeanslabo/netbeans-explore-from-here/releases/download/v${spec.version}/netbeans-html-enhancements-${spec.version}.nbm"/>
+        <replace file='${auc_file}' token='distribution=""' value='distribution="${download.url}"'/>
+        <copy file="build/${code.name.base.dashes}.nbm" tofile="releases/${code.name.base.dashes}.${spec.version}.nbm" overwrite="true"/>
 
-        <length file="build/net-sf-efhnbm.nbm" property="nbm_size"/>
+        <length file="build/${code.name.base.dashes}.nbm" property="nbm_size"/>
         <replace file='${auc_file}' token='downloadsize="0"' value='downloadsize="${nbm_size}"'/>
 
         <delete dir="temp" />
+    </target>
+
+    <target name="-nbm-spec-version" depends="nbm">
+        <loadfile property="implementation.version" srcFile="manifest.mf">
+            <filterchain>
+                <tokenfilter>
+                    <containsregex pattern="OpenIDE-Module-Implementation-Version:[ \t]*" replace="" flags="i"/>
+                </tokenfilter>
+                <striplinebreaks />
+            </filterchain>
+        </loadfile>
+        <property name="spec.version" value="${spec.version.base}.${implementation.version}"/>
+    </target>
+
+    <target name="nbm-with-version" depends="-nbm-spec-version">
+        <move file="build/${code.name.base.dashes}.nbm" tofile="build/${code.name.base.dashes}-${spec.version}.nbm"/>
     </target>
 </project>
