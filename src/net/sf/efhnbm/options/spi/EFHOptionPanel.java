@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import org.openide.util.NbBundle;
 
 /**
  * spi option panel
@@ -128,12 +129,12 @@ public final class EFHOptionPanel extends JPanel {
         commandTextFieldSelect = new JTextField();
         browseCommandButtonExplore = new JButton();
 
-        ResourceBundle bundle = ResourceBundle.getBundle("net/sf/efhnbm/resources/i18n"); // NOI18N
-        setBorder(BorderFactory.createTitledBorder(bundle.getString("option"))); // NOI18N
+        setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(EFHOptionPanel.class, "EFHOptionPanel.border.title"))); // NOI18N
 
         bundleOption.setBackground(null);
         optionGroup.add(bundleOption);
-        bundleOption.setText(bundle.getString("option.bundle")); // NOI18N
+        ResourceBundle bundle = ResourceBundle.getBundle("net/sf/efhnbm/options/spi/Bundle"); // NOI18N
+        bundleOption.setText(bundle.getString("EFHOptionPanel.bundleOption.text")); // NOI18N
         bundleOption.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         bundleOption.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -143,7 +144,7 @@ public final class EFHOptionPanel extends JPanel {
 
         classOption.setBackground(null);
         optionGroup.add(classOption);
-        classOption.setText(bundle.getString("option.class")); // NOI18N
+        classOption.setText(NbBundle.getMessage(EFHOptionPanel.class, "EFHOptionPanel.classOption.text")); // NOI18N
         classOption.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         classOption.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -153,7 +154,7 @@ public final class EFHOptionPanel extends JPanel {
 
         commandOption.setBackground(null);
         optionGroup.add(commandOption);
-        commandOption.setText(bundle.getString("option.command")); // NOI18N
+        commandOption.setText(bundle.getString("EFHOptionPanel.commandOption.text")); // NOI18N
         commandOption.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         commandOption.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -161,18 +162,18 @@ public final class EFHOptionPanel extends JPanel {
             }
         });
 
-        commandExploreLabel.setText("Explore:");
+        commandExploreLabel.setText(NbBundle.getMessage(EFHOptionPanel.class, "EFHOptionPanel.commandExploreLabel.text")); // NOI18N
 
-        commandSelectLabel.setText("Select:");
+        commandSelectLabel.setText(NbBundle.getMessage(EFHOptionPanel.class, "EFHOptionPanel.commandSelectLabel.text")); // NOI18N
 
-        browseCommandButtonSelect.setText(bundle.getString("browse_command")); // NOI18N
+        browseCommandButtonSelect.setText(bundle.getString("EFHOptionPanel.browseCommandButtonSelect.text")); // NOI18N
         browseCommandButtonSelect.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent evt) {
                 onBrowseForCommandSelect(evt);
             }
         });
 
-        browseCommandButtonExplore.setText(bundle.getString("browse_command")); // NOI18N
+        browseCommandButtonExplore.setText(bundle.getString("EFHOptionPanel.browseCommandButtonExplore.text")); // NOI18N
         browseCommandButtonExplore.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent evt) {
                 onBrowseForCommandExplore(evt);

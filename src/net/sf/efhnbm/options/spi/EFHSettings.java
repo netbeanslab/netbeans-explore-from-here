@@ -39,9 +39,9 @@ public final class EFHSettings extends SharedClassObject {
     public static final String PROP_OPTION_BUNDLE = "bundle"; // NOI18N
     public static final String PROP_OPTION_CLASS = "class"; // NOI18N
     public static final String PROP_OPTION_COMMAND = "command"; // NOI18N
-    public static final String PROP_LAUNCHER_CLASS = "launcher_class"; // NOI18N
-    public static final String PROP_COMMAND_EXPLORE = "command";// NOI18N keeping "command" for backward comp.
-    public static final String PROP_COMMAND_SELECT = "command_select"; // NOI18N
+    public static final String PROP_LAUNCHER_CLASS = "launcher.class"; // NOI18N
+    public static final String PROP_COMMAND_EXPLORE = "command.explore";// NOI18N
+    public static final String PROP_COMMAND_SELECT = "command.select"; // NOI18N
     private static final EFHSettings INSTANCE = SharedClassObject.findObject(EFHSettings.class, true);
     private static final long serialVersionUID = 588225648352926127L;
 
