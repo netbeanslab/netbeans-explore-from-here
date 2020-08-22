@@ -36,15 +36,74 @@ import javax.swing.LayoutStyle;
  * @author alessandro negrin
  * @version $Id$
  */
-public class EFHOptionPanel extends JPanel {
+public final class EFHOptionPanel extends JPanel {
 
+    private final EFHPanelController controller;
     private static final long serialVersionUID = 9018890829648160858L;
 
     /**
      * Creates new form EFHOptionPanel.
+     *
+     * @param controller
      */
-    public EFHOptionPanel() {
+    public EFHOptionPanel(EFHPanelController controller) {
         initComponents();
+        this.controller = controller;
+    }
+
+    void load() {
+        EFHSettings settings = EFHSettings.getInstance();
+        if (EFHSettings.PROP_OPTION_BUNDLE.equals(settings.getOption())) {
+            getBundleOption().setSelected(true);
+            getClassTextField().setEnabled(false);
+
+            getCommandTextFieldExplore().setEnabled(false);
+            getBrowseCommandButtonExplore().setEnabled(false);
+            getCommandTextFieldSelect().setEnabled(false);
+            getBrowseCommandButtonSelect().setEnabled(false);
+
+        } else if (EFHSettings.PROP_OPTION_CLASS.equals(settings.getOption())) {
+            getClassOption().setSelected(true);
+            getClassTextField().setEnabled(true);
+
+            getCommandTextFieldExplore().setEnabled(false);
+            getBrowseCommandButtonExplore().setEnabled(false);
+            getCommandTextFieldSelect().setEnabled(false);
+            getBrowseCommandButtonSelect().setEnabled(false);
+
+        } else if (EFHSettings.PROP_OPTION_COMMAND.equals(settings.getOption())) {
+            getCommandOption().setSelected(true);
+            getClassTextField().setEnabled(false);
+
+            getCommandTextFieldExplore().setEnabled(true);
+            getBrowseCommandButtonExplore().setEnabled(true);
+            getCommandTextFieldSelect().setEnabled(true);
+            getBrowseCommandButtonSelect().setEnabled(true);
+
+        }
+        getClassTextField().setText(settings.getLauncherClass());
+        getCommandTextFieldExplore().setText(settings.getCommandExplore());
+        getCommandTextFieldSelect().setText(settings.getCommandSelect());
+    }
+
+    void store() {
+        EFHSettings settings = EFHSettings.getInstance();
+        if (getBundleOption().isSelected()) {
+            settings.setOption(EFHSettings.PROP_OPTION_BUNDLE);
+        } else if (getClassOption().isSelected()) {
+            settings.setOption(EFHSettings.PROP_OPTION_CLASS);
+        } else if (getCommandOption().isSelected()) {
+            settings.setOption(EFHSettings.PROP_OPTION_COMMAND);
+        }
+        settings.setLauncherClass(getClassTextField().getText());
+        settings.setCommandExplore(getCommandTextFieldExplore().getText());
+        settings.setCommandSelect(getCommandTextFieldSelect().getText());
+        settings.firePropertiesHaveBeenChanged();
+    }
+
+    boolean valid() {
+        // TODO check whether form is consistent and complete
+        return true;
     }
 
     /**

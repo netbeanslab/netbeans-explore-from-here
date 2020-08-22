@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <!--
 
                           Sun Public License Notice
@@ -18,7 +18,6 @@
 
 -->
 <filesystem>
-
     <folder name="Actions">
         <folder name="Window">
             <folder name="SelectDocumentNode">
@@ -57,12 +56,13 @@
         </folder>
     </folder>
 
-    <folder name="OptionsDialog">
+    <folder name="OptionsExport">
         <folder name="Advanced">
-            <file name="EFHOptionCategory.instance">
-                <attr name="instanceClass" stringvalue="net.sf.efhnbm.options.spi.EFHOptionCategory"/>
+            <file name="Explore from here">
+                <attr name="include" stringvalue="config/Preferences/net/sf/efhnbm.*"/>
+                <attr name="displayName" bundlevalue="net.sf.efhnbm.Bundle#LBL_EFHExportName"/>
+                <attr name="position" intvalue="1000"/>
             </file>
         </folder>
     </folder>
-
 </filesystem>

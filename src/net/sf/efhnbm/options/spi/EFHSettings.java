@@ -33,7 +33,7 @@ import org.openide.util.SharedClassObject;
  * @author alessandro negrin
  * @version $Id$
  */
-public class EFHSettings extends SharedClassObject {
+public final class EFHSettings extends SharedClassObject {
 
     public static final String PROP_OPTION = "option"; // NOI18N
     public static final String PROP_OPTION_BUNDLE = "bundle"; // NOI18N
@@ -42,12 +42,17 @@ public class EFHSettings extends SharedClassObject {
     public static final String PROP_LAUNCHER_CLASS = "launcher_class"; // NOI18N
     public static final String PROP_COMMAND_EXPLORE = "command";// NOI18N keeping "command" for backward comp.
     public static final String PROP_COMMAND_SELECT = "command_select"; // NOI18N
+    private static final EFHSettings INSTANCE = SharedClassObject.findObject(EFHSettings.class, true);
     private static final long serialVersionUID = 588225648352926127L;
 
     /**
      * Creates a new instance of EFHSettings.
      */
-    public EFHSettings() {
+    private EFHSettings() {
+    }
+
+    public static EFHSettings getInstance() {
+        return INSTANCE;
     }
 
     private void putPreference(String key, String value) throws BackingStoreException {
@@ -76,11 +81,11 @@ public class EFHSettings extends SharedClassObject {
     protected void initialize() {
         super.initialize();
 
-        putProperty(PROP_COMMAND_EXPLORE, getPreference(PROP_COMMAND_EXPLORE, "rundll32 url.dll,FileProtocolHandler {0}"), true);
-        putProperty(PROP_LAUNCHER_CLASS, getPreference(PROP_LAUNCHER_CLASS, "net.sf.efhnbm.launchers.Win32Launcher"), true);
+        putProperty(PROP_COMMAND_EXPLORE, getPreference(PROP_COMMAND_EXPLORE, "rundll32 url.dll,FileProtocolHandler {0}"), true); // NOI18N
+        putProperty(PROP_LAUNCHER_CLASS, getPreference(PROP_LAUNCHER_CLASS, "net.sf.efhnbm.launchers.Win32Launcher"), true); // NOI18N
         putProperty(PROP_OPTION, getPreference(PROP_OPTION, PROP_OPTION_BUNDLE), true);
 
-        putProperty(PROP_COMMAND_SELECT, getPreference(PROP_COMMAND_SELECT, "explorer /e,/select,{0}"), true);
+        putProperty(PROP_COMMAND_SELECT, getPreference(PROP_COMMAND_SELECT, "explorer /e,/select,{0}"), true); // NOI18N
     }
 
     /**

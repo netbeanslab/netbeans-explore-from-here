@@ -16,100 +16,50 @@
 package net.sf.efhnbm.options.spi;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
-import org.openide.util.SharedClassObject;
 
-/**
- * spi option panel controller
- *
- * @author alessandro negrin
- * @version $Id$
- */
-public class EFHPanelController extends OptionsPanelController {
+@OptionsPanelController.SubRegistration(
+        displayName = "#AdvancedOption_DisplayName_ExploreFromHere",
+        keywords = "#AdvancedOption_Keywords_ExploreFromHere",
+        keywordsCategory = "Advanced/ExploreFromHere"
+)
+@org.openide.util.NbBundle.Messages({
+    "AdvancedOption_DisplayName_ExploreFromHere=Explore from here",
+    "AdvancedOption_Keywords_ExploreFromHere=explore, select"
+})
+public final class EFHPanelController extends OptionsPanelController {
 
-    private final EFHOptionPanel panel;
-    private final EFHSettings settings;
-    private boolean changed = false;
+    private EFHOptionPanel panel;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private boolean changed;
 
-    /**
-     * Creates a new instance of EFHPanelController
-     */
-    public EFHPanelController() {
-        super();
-        panel = new EFHOptionPanel();
-        settings = SharedClassObject.findObject(EFHSettings.class, true);
-    }
-
-    /**
-     * load settings
-     *
-     */
     @Override
     public void update() {
-        if (EFHSettings.PROP_OPTION_BUNDLE.equals(settings.getOption())) {
-            panel.getBundleOption().setSelected(true);
-            panel.getClassTextField().setEnabled(false);
-
-            panel.getCommandTextFieldExplore().setEnabled(false);
-            panel.getBrowseCommandButtonExplore().setEnabled(false);
-            panel.getCommandTextFieldSelect().setEnabled(false);
-            panel.getBrowseCommandButtonSelect().setEnabled(false);
-
-        } else if (EFHSettings.PROP_OPTION_CLASS.equals(settings.getOption())) {
-            panel.getClassOption().setSelected(true);
-            panel.getClassTextField().setEnabled(true);
-
-            panel.getCommandTextFieldExplore().setEnabled(false);
-            panel.getBrowseCommandButtonExplore().setEnabled(false);
-            panel.getCommandTextFieldSelect().setEnabled(false);
-            panel.getBrowseCommandButtonSelect().setEnabled(false);
-
-        } else if (EFHSettings.PROP_OPTION_COMMAND.equals(settings.getOption())) {
-            panel.getCommandOption().setSelected(true);
-            panel.getClassTextField().setEnabled(false);
-
-            panel.getCommandTextFieldExplore().setEnabled(true);
-            panel.getBrowseCommandButtonExplore().setEnabled(true);
-            panel.getCommandTextFieldSelect().setEnabled(true);
-            panel.getBrowseCommandButtonSelect().setEnabled(true);
-
-        }
-        panel.getClassTextField().setText(settings.getLauncherClass());
-        panel.getCommandTextFieldExplore().setText(settings.getCommandExplore());
-        panel.getCommandTextFieldSelect().setText(settings.getCommandSelect());
+        getPanel().load();
         changed = false;
     }
 
-    /**
-     * save settings.
-     *
-     */
     @Override
     public void applyChanges() {
-        if (panel.getBundleOption().isSelected()) {
-            settings.setOption(EFHSettings.PROP_OPTION_BUNDLE);
-        } else if (panel.getClassOption().isSelected()) {
-            settings.setOption(EFHSettings.PROP_OPTION_CLASS);
-        } else if (panel.getCommandOption().isSelected()) {
-            settings.setOption(EFHSettings.PROP_OPTION_COMMAND);
-        }
-        settings.setLauncherClass(panel.getClassTextField().getText());
-        settings.setCommandExplore(panel.getCommandTextFieldExplore().getText());
-        settings.setCommandSelect(panel.getCommandTextFieldSelect().getText());
-        settings.firePropertiesHaveBeenChanged();
-        changed = true;
+        SwingUtilities.invokeLater(() -> {
+            getPanel().store();
+            changed = false;
+        });
     }
 
     @Override
     public void cancel() {
+        // need not do anything special, if no changes have been persisted yet
     }
 
     @Override
     public boolean isValid() {
-        return true;
+        return getPanel().valid();
     }
 
     @Override
@@ -118,21 +68,38 @@ public class EFHPanelController extends OptionsPanelController {
     }
 
     @Override
-    public JComponent getComponent(Lookup masterLookup) {
-        return panel;
+    public HelpCtx getHelpCtx() {
+        return null; // new HelpCtx("...ID") if you have a help set
     }
 
     @Override
-    public HelpCtx getHelpCtx() {
-        return HelpCtx.DEFAULT_HELP;
+    public JComponent getComponent(Lookup masterLookup) {
+        return getPanel();
     }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener l) {
+        pcs.addPropertyChangeListener(l);
     }
 
     @Override
     public void removePropertyChangeListener(PropertyChangeListener l) {
+        pcs.removePropertyChangeListener(l);
+    }
+
+    private EFHOptionPanel getPanel() {
+        if (panel == null) {
+            panel = new EFHOptionPanel(this);
+        }
+        return panel;
+    }
+
+    void changed() {
+        if (!changed) {
+            changed = true;
+            pcs.firePropertyChange(OptionsPanelController.PROP_CHANGED, false, true);
+        }
+        pcs.firePropertyChange(OptionsPanelController.PROP_VALID, null, null);
     }
 
 }
