@@ -90,7 +90,7 @@ public class EFHHelper {
 
     @NbBundle.Messages({
         "# {0} - os name",
-        "EFHHelper.error.message=Can\'t find a good explorer/prompt for {0}"
+        "EFHHelper.error.message=Can''t find a good explorer/prompt for {0}"
     })
     private void showError() {
         Utils.showErrorMessage(Bundle.EFHHelper_error_message(Utils.OS_NAME));
