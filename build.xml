@@ -27,7 +27,7 @@
         <property file="${temp_file}"/>
         <property name="download.url" value="https://github.com/netbeanslabo/netbeans-explore-from-here/releases/download/v${spec.version}/netbeans-html-enhancements-${spec.version}.nbm"/>
         <replace file='${auc_file}' token='distribution=""' value='distribution="${download.url}"'/>
-        <copy file="build/${code.name.base.dashes}.nbm" tofile="releases/${code.name.base.dashes}.${spec.version}.nbm" overwrite="true"/>
+        <copy file="build/${code.name.base.dashes}.nbm" tofile="releases/${code.name.base.dashes}-${spec.version}.nbm" overwrite="true"/>
 
         <length file="build/${code.name.base.dashes}.nbm" property="nbm_size"/>
         <replace file='${auc_file}' token='downloadsize="0"' value='downloadsize="${nbm_size}"'/>
