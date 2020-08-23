@@ -25,7 +25,7 @@
         <xslt basedir="." in="build/cluster/config/Modules/${code.name.base.dashes}.xml" out="${temp_file}" style="version_to_props.xsl" />
 
         <property file="${temp_file}"/>
-        <property name="download.url" value="https://github.com/netbeanslabo/netbeans-explore-from-here/releases/download/v${spec.version}/netbeans-html-enhancements-${spec.version}.nbm"/>
+        <property name="download.url" value="https://github.com/netbeanslabo/netbeans-explore-from-here/releases/download/v${spec.version}/${code.name.base.dashes}-${spec.version}.nbm"/>
         <replace file='${auc_file}' token='distribution=""' value='distribution="${download.url}"'/>
         <copy file="build/${code.name.base.dashes}.nbm" tofile="releases/${code.name.base.dashes}-${spec.version}.nbm" overwrite="true"/>
 
