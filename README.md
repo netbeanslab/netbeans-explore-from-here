@@ -9,7 +9,7 @@ This NetBeans Plugin has been cloned from the repository created by Alessandro N
 
 ## Downloads
 
-- https://github.com/netbeanslabo/netbeans-explore-from-here/releases (netbeanslabo-explore-from-here-x.x.x.nbm)
+- https://github.com/netbeanslab/netbeans-explore-from-here/releases (netbeanslab-explore-from-here-x.x.x.nbm)
 
 ## Install
 
@@ -24,9 +24,9 @@ This NetBeans Plugin has been cloned from the repository created by Alessandro N
 
 Add the URL of Update Center.
 
-https://raw.githubusercontent.com/netbeanslabo/netbeans-explore-from-here/[branch]/efhnbm_autoupdate_center.xml
+https://raw.githubusercontent.com/netbeanslab/netbeans-explore-from-here/[branch]/efhnbm_autoupdate_center.xml
 
-e.g. for 12.0+ : https://raw.githubusercontent.com/netbeanslabo/netbeans-explore-from-here/nb120/efhnbm_autoupdate_center.xml
+e.g. for 12.0+ : https://raw.githubusercontent.com/netbeanslab/netbeans-explore-from-here/nb120/efhnbm_autoupdate_center.xml
 
 1. Click Tools > Plugins > Settings > Add button
 2. Input Name (e.g. Explore from here)

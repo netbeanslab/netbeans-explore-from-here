@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-OpenIDE-Module: netbeanslabo.explore.from.here/0
+OpenIDE-Module: netbeanslab.explore.from.here/1
 OpenIDE-Module-Implementation-Version: 0
 OpenIDE-Module-Layer: net/sf/efhnbm/resources/layer.xml
 OpenIDE-Module-Localizing-Bundle: net/sf/efhnbm/Bundle.properties
